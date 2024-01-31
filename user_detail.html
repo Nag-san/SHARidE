@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apis.mappls.com/advancedmaps/api/f0efde99426abd578704537c233bbb03/map_sdk?v=3.0&layer=vector"></script>
+    <link rel = "stylesheet" href="css/styles.css">
+</head>
+<body onload = "hi()">
+    
+    <h3 id = "msg"> </h3>
+    <label for="phoneno"> Enter your mobile number: </label> <input type = "text" id = "phoneno"><br>
+    <label for="area"> Choose your area: </label>
+    <select name = "area" id="area">
+        <option value = "Kalyan Nagar" selected> Kalyan Nagar </option>
+        <option value = "Hennur" > Hennur </option>
+        <option value = "KR Puram"> KR Puram </option>
+        <option value = "Hebbal"> Hebbal</option>
+    </select> <br>
+    Use present location as your home address: <button onclick = "ploc()"> Click me! </button> 
+    <div id="map"></div>
+    Please click on the marker after choosing your location 
+    <br> <br> 
+    <span id = "locmsg"> Confirm your location? </span> 
+    <button onclick = "loc()"> Yes </button> 
+    <button onclick = "reset()"> Reset </button>
+    <br><br>
+    Are you a sharee or sharer? 
+    <input type="radio" id="sharee" name="choice"> <label for="sharee"> Sharee </label>
+    <input type="radio" id="sharer" name="choice"> <label for="sharer"> Sharer </label><br>
+    <label for="pwd"> Enter you password:</label> <input type="password" id="pwd"><br>
+    <label for="cpwd"> Confirm your password: </label> <input type="password" id="cpwd"><br>
+    <h5 id = "error"> Please enter all details </h4>
+    <input  type="submit" onclick="submit()">
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src = "js/firebaseconfig.js"></script>
+    <script src = "js/user_details.js"></script>
+</body>
+</html>

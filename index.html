@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class = "box header">
+    <div id="main">
+        <img src = Sharide.png id="img"><br> <br>
+        <span id="heading"> <b> SHARidE </b> </span> <br> <br>
+        <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+    </div>
+</div>
+<div class = "box main">
+    <div id="signup-box">
+        <div id="sign up">
+            <h3> Login </h3>
+            Enter your roll no: 
+            <input type="text" id="rollno" size="30" name="rollno"><br><br>
+            Enter password:
+            <input type="password" id="pwd" size="30" name="pwd"> <br><br>
+            <h5 id = "msg"> </h5>
+            <button onclick = "login()" id = 'submit'> Submit </button> <br> <br>
+            <a href = "signup.html"> Create an <i>account?</i> </a>
+        </div>
+        </div>
+    </div>
+    <div class = "box footer"> </div>
+</div>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src = "js/firebaseconfig.js"> </script>
+    <script src = js/signup.js> </script>
+</body>
+</html>

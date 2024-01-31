@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="box header">
+        <img src="Sharide.png" id="img" /><br />
+        <br />
+        <span id="heading"> <b> SHARidE </b> </span> <br />
+        <br />
+        <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+      </div>
+      <div class="box main">
+        <div id="signup-box">
+          <div id="sign up">
+            <h3>Sign Up</h3>
+            Enter college email id:
+            <input type="text" id="email" size="30" name="mail" /><br /><br />
+            Enter verification code:
+            <input type="text" id="otp" size="30" name="otp" /> <br /><br />
+            <button onclick="user_auth()" id="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="box footer">Footer</div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src="js/firebaseconfig.js"></script>
+    <script src="js/signup.js"></script>
+  </body>
+</html>

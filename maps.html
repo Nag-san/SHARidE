@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://apis.mappls.com/advancedmaps/api/f0efde99426abd578704537c233bbb03/map_sdk?v=3.0&layer=vector"></script>
+    <script src="https://apis.mapmyindia.com/advancedmaps/api/f0efde99426abd578704537c233bbb03/map_sdk_plugins"></script>
+    <link rel="stylesheet" href="css/maps.css" />
+  </head>
+  <body onload="load()">
+    <div id="map"></div>
+    <button id = "getd" onclick = "getd()"> Get Directions </button>
+    <button id=" success" onclick = "succ_ride()"> Successful Ride!!</button>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src="js/firebaseconfig.js"></script>
+    <script src="js/maps.js"></script>
+  </body>
+</html>

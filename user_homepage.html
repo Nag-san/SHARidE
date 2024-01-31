@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "css/styles.css">
+</head>
+<body onload = "hi()"">
+    <div class = "wrapper">
+        <div class = "box header"> 
+                <img src = Sharide.png id="img"> <br> <br>
+                <span id="heading"> <b> SHARidE </b> </span> <br> <br>
+                <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+     </div>
+        <div class = "box main"> 
+            <span id = "hi"> </span> <br>
+            <span id = "user_points"> </span> <br/> <br>
+
+            <button id="Book" onclick = "book()"> Book a ride?</button> <br/><br/>
+            <button id="logout" onclick = "logout()"> Log out? </button>
+        </div>
+        <div class = "box footer"> Footer </div>
+
+    </div>
+
+    <div class = "wrapper-1">
+        <div class = "box header"> 
+            <img src = Sharide.png id="img"> <br> <br>
+                <span id="heading"> <b> SHARidE </b> </span> <br> <br>
+                <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+     </div>
+     <div class = "box main">
+        <label for = "from"> From: </label>
+        <select name = "from" onchange="select()" id = "from">
+            <option value = "Home" selected> Home </option>
+            <option value = "College"> College </option>
+        </select> <br> <br>
+        <label for = "to"> To: </label>
+        <select name = "to" id = "to" disabled>
+            <option value = "Home"> Home </option> <br> <br>
+            <option value = "College" selected> College </option>
+        </select> <br> <br>
+        <button id = "ShareRide" onclick = "ShareRide()"> Share Ride </button> <br> <br>
+        <button id = "Previous1" onclick = "Previous1()"> Previous </button>
+     </div>
+     <div class = "box footer">
+        footer
+     </div>
+
+     <div class = "wrapper-1">
+        <div class = "box header"> 
+            <img src = Sharide.png id="img"> <br> <br>
+                <span id="heading"> <b> SHARidE </b> </span> <br> <br>
+                <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+     </div>
+     <div class = "box main">
+        <table id = "users"> </table>
+        <span id = "Wait"> Please wait </span> <br><br>
+        <button id = "Refresh" onclick = "Refresh()"> Refresh </button>
+        <button id = "BookRide" onclick = "BookRide()"> Book Ride </button> <br> <br>
+        <button id = "CancelRide" onclick = "CancelRide()"> Cancel Ride </button>
+     </div>
+     <div class = "box footer">
+        footer
+     </div>
+            </div>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src="js/firebaseconfig.js"></script>
+    <script src = "js/user_homepage.js"></script>
+</body>
+</html>

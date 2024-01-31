@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "css/styles.css">
+</head>
+<body onload = "hi()">
+    <h5 id = "User"> </h5> <br> 
+    <table id = "messages">
+    </table>
+    Enter a message: <input type = "text" id = "msg">
+    <button id = "send"  onclick = "send()"> Send </button>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src = "js/firebaseconfig.js"></script>
+    <script src = "js/messaging.js"></script>
+</body>
+</html>
