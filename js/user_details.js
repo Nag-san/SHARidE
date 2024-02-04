@@ -15,6 +15,8 @@ var area = document.getElementById("area");
 var pwd;
 var glat, glong;
 var dl;
+var desp;
+var name;
 const map = new mappls.Map("map", {
   center: { lat: 13.027239970980778, lng: 77.63651315651865 },
 });
@@ -22,6 +24,9 @@ const marker1 = new mappls.Marker({
   map: map,
   draggable: true,
   fitbounds: true,
+  width: 35,
+  height: 50,
+  popupHtml: "Your location ",
   position: { lat: 13.027239970980778, lng: 77.63651315651865 },
 });
 
@@ -33,7 +38,7 @@ function hi() {
     if (url[i] == "?") break;
   }
   user_id = url.substring(i + 1);
-  document.getElementById("msg").innerText = `Hi ${user_id} !`;
+  document.getElementById("msg").innerText = `Heyy ${user_id} !`;
 }
 
 //Map listener to set center according to area
@@ -68,7 +73,6 @@ sharer.addEventListener("click", () =>{
 //To get user's custom position
 marker1.addListener("click", function () {
   let pos1 = marker1.getPosition();
-  console.log(pos1.lng);
   glat = pos1.lat;
   glong = pos1.lng;
 });
@@ -93,6 +97,18 @@ function ploc() {
 async function submit() {
   choice = " ";
   auth = true;
+  let name = document.getElementById("name").value;
+  let desp = document.getElementById("description").value;
+  if(name.length===0)
+  {
+  document.getElementById("error").innerText = "Please enter your name!";
+  auth = false;
+  }
+  else if(desp.length===0)
+  {
+    document.getElementById("error").innerText = "You need to give a bio!";
+    auth = false;
+  }
   area = document.getElementById("area").value;
   if (document.getElementById("sharee").checked == true) {
     choice = "sharee";
@@ -128,9 +144,11 @@ function loc() {
 
 //To reset user's location
 function reset() {
+  document.getElementById("area").value = "Kalyan Nagar";
+  map.setCenter({ lat: 13.027239970980778, lng: 77.63651315651865 });
   marker1.setPosition({ lat: 13.027239970980778, lng: 77.63651315651865 });
   auth = false;
-  document.getElementById("locmsg").innerText = "Choose your location again!";
+  document.getElementById("locmsg").innerText = "Choose your area again!";
 }
 
 //Writing data in the firebase
@@ -139,7 +157,7 @@ async function setdetails() {
     .doc(user_id)
     .set({
       User_pwd: pwd,
-      User_to: 2,  //going nowhere
+      User_to: 2,  //going no where
       User_pts: 0,
       User_rides: 0,
       User_lat: glat,
@@ -155,10 +173,12 @@ async function setdetails() {
       console.log(err);
     });
     var desp = document.getElementById("description").value;
+    var name = document.getElementById("name").value;
     await review_col.doc(user_id).set({
       description: desp,
       rating: 0,
-      reviews: []
+      reviews: [],
+      name: name
     });
 
   //Writing data in either Sharee or Sharer
@@ -193,5 +213,20 @@ async function setdetails() {
         console.log(err);
       });
   }
+  window.location.href = "Terms.html";
+}
+
+function next()
+{
+  if(document.getElementById("terms").checked == true)
+  {
+    window.location.href = "Pledge.html";
+  }
+  else
+  document.getElementById("err").innerText = "Please agree to our terms and conditions!";
+}
+
+function pledge()
+{
   window.location.href = "index.html";
 }

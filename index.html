@@ -6,22 +6,25 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body onload = "hi()" class = "max-w-screen-md max-h-screen-md">
-    <div class="p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8">
+<body class = "min-w-screen min-h-screen bg-green-400">
+    <div class="p-2 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg mt-11 mb-11 flex flex-col items-center space-x-8">
         <div>
+            <div class = "flex p-10">
         <img class = "w-32 h-34 rounded-full" src = Sharide.png id="img">
-        <div class = "text-xl font-medium"> <b> SHARidE </b> <br></div>
+        <div class  ="flex flex-col p-4">
+        <div class = "text-4xl font-medium"> <b> SHARidE </b> <br></div>
         <div class = "text-sm font-thin"> <i> Commuting. Socialising. Saving. </i> </div><br>
-
-<div class = "p-4 bg-green-200">
-            <h3> Login </h3> <br>
-            Enter your roll no: 
-            <input type="text" id = "rollno" class = "rounded-md w-52 p-1 border border-gray-300" placeholder="'22BCAB39'"><br><br>
-            Enter password:
-            <input type="password" id="pwd" class = "rounded-md w-52 p-1 border border-gray-300"> <br><br>
-            <h5 id = "msg"> </h5>
-            <button onclick = "login()" id = 'submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Submit </button> <br> <br>
-            <a href = "signup.html"> Create an <i>account?</i> </a>
+    </div>
+    </div>
+<div class = "p-4 bg-green-200 flex flex-col mb-11 rounded-md">
+            <h3 class = "text-lg"> Login </h3> <br>
+            Enter your roll no: *
+            <input type="text" id = "rollno" required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500" placeholder="'22BCAB39'"><br><br>
+            Enter password: *
+            <input type="password" id="pwd" required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"> <br><br>
+            <h5 id = "msg" class = "text-red-500"><i> *Required fields </i></h5>
+            <button onclick = "login()" id = 'submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5"> Submit </button> <br> <br>
+            <a href = "signup.html" class = "p-3 bg-slate-500 bg-transparent hover:bg-white"> Create an <i>account?</i> </a>
         </div>
     </div>
     </div>

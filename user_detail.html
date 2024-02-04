@@ -10,19 +10,25 @@
       rel="stylesheet"
     />
   </head>
-  <body onload="hi()" class="max-w-screen-md max-h-screen-md">
+  <body onload="hi()" class="min-w-screen min-h-screen bg-green-400">
     <div
-      class="p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8"
+      class="p-2 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg mt-11 mb-11 flex flex-col items-center space-y-3 space-x-8"
     >
-      <div class="p-4 bg-green-200 flex flex-col space-y-2 items-left">
-        <h3 id="msg"></h3>
-        <label for="description"> Enter a bio: </label>
+      <div class="p-2 flex flex-col space-y-2 items-left">
+        <h3 class = "text-lg" id="msg"></h3> <br>
+        <div class="flex flex-col bg-green-200 p-6 rounded-lg"> 
+        Enter your Name: * <input  type = "text" id = "name" required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500"> <br>
+        <label for="description"> Enter a bio: * </label>
         <input
           type="text"
           id="description"
-          class="rounded-md w-52 p-1 border border-gray-300"
+          required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500"
         /><br />
-        <label for="area"> Choose your area: </label>
+        This bio will be visible to other users! <br>
+      </div>
+      <div class="flex flex-col space-y-3 bg-green-200 p-6 rounded-lg"> 
+    
+        <label for="area"> Choose your area: * </label>
         <select name="area" id="area" class = "rounded-md w-52 p-1 border border-gray-300">
           <option value="Kalyan Nagar" selected>Kalyan Nagar</option>
           <option value="Hennur">Hennur</option>
@@ -30,15 +36,20 @@
           <option value="Hebbal">Hebbal</option>
         </select>
         <br />
-        Use present location as your home address:
-        <button
-          onclick="ploc()"
-          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Click me!
-        </button>
-        <div id="map" class="w-64 h-64"></div>
-        Please click on the marker after choosing your location
+       </div>
+       <div class="flex flex-col bg-green-200 p-6 rounded-lg space-y-4">
+       Use <br>
+       <button
+         onclick="ploc()"
+         class="bg-green-500 hover:bg-green-700 text-white font-bold p-2 rounded"
+       >
+         Present Location
+       </button> as your home address
+        <div class="text-lg"> OR</div>
+        <br>
+        <div class="bg-green-500 text-white font-bold p-2 rounded text-center last:self-stretch">Custom Location</div>
+        <div id="map" class="w-66 h-64"></div>
+        Please click on the marker after choosing your location!
         <br />
         <span id="locmsg"> Confirm your location? </span>
         <button
@@ -53,36 +64,45 @@
         >
           Reset
         </button>
-        <br /><br />
+        </div>
+        <div class="flex flex-col bg-green-200 p-6 rounded-lg space-y-4 self-stretch">
         Are you a sharee or sharer? <br>
-        <input type="radio" id="sharee" name="choice" />
-        <label for="sharee"> Sharee </label>
-        <input type="radio" id="sharer" name="choice" />
-        <label for="sharer"> Sharer </label><br /> 
-        <label id="dl"> Enter your driving licence number </label
+        <div class="flex items-center space-x-8">
+          <label for="sharee" class="flex items-center cursor-pointer"> Sharee </label> 
+        <input type="radio" id="sharee" name="choice" class="w-4 h-4 border border-gray-300 rounded-full flex items-center justify-center mr-2 focus-within:border-blue-500">
+        <label for="sharer" class="flex items-center cursor-pointer"> Sharer </label><br /> 
+        <input type="radio" id="sharer" name="choice" class="w-4 h-4 border border-gray-300 rounded-full flex items-center justify-center mr-2 focus-within:border-blue-500">
+
+        </div>
+        <label id="dl"> Enter your driving licence number *</label
         ><input
           type="text"
           id="dl1"
-          class="rounded-md w-52 p-1 border border-gray-300"
+          required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500"
         /><br>
-        <label for="pwd"> Enter you password:</label>
+        </div>
+        <div class="flex flex-col bg-green-200 p-6 rounded-lg space-y-4">
+        <label for="pwd"> Enter you password: *</label>
         <input
           type="password"
           id="pwd"
-          class="rounded-md w-52 p-1 border border-gray-300"
+          required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500"
         /><br />
-        <label for="cpwd"> Confirm your password: </label>
+        <label for="cpwd"> Confirm your password: *</label>
         <input
           type="password"
           id="cpwd"
-          class="rounded-md w-52 p-1 border border-gray-300"
+          required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500"
         /><br />
-        <h5 id="error">Please enter all details</h5>
+        </div>
+
+        <h5 id="error" class = "text-red-500"> * Required fields </h5>
         <input
           type="submit"
           onclick="submit()"
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         />
+        </div>
       </div>
     </div>
 
