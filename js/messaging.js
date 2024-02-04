@@ -7,6 +7,7 @@ const msg_col = db.collection("Messaging");
 var curr_user = "22BCAB29";
 var to_user = "22BCAB39";
 
+
 async function hi() {
   var i = 0;
   var url = document.location.href;
@@ -100,4 +101,9 @@ async function send() {
 
   document.getElementById("msg").value = "";
   location.reload();
+}
+
+function reviews(string){
+  var us_review = string.innerText;
+  window.location.href = "reviews.html?" + us_review;
 }

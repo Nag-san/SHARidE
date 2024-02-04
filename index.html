@@ -4,33 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel = "stylesheet" href = "css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="wrapper">
-        <div class = "box header">
-    <div id="main">
-        <img src = Sharide.png id="img"><br> <br>
-        <span id="heading"> <b> SHARidE </b> </span> <br> <br>
-        <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
-    </div>
-</div>
-<div class = "box main">
-    <div id="signup-box">
-        <div id="sign up">
-            <h3> Login </h3>
+<body onload = "hi()" class = "max-w-screen-md max-h-screen-md">
+    <div class="p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8">
+        <div>
+        <img class = "w-32 h-34 rounded-full" src = Sharide.png id="img">
+        <div class = "text-xl font-medium"> <b> SHARidE </b> <br></div>
+        <div class = "text-sm font-thin"> <i> Commuting. Socialising. Saving. </i> </div><br>
+
+<div class = "p-4 bg-green-200">
+            <h3> Login </h3> <br>
             Enter your roll no: 
-            <input type="text" id="rollno" size="30" name="rollno"><br><br>
+            <input type="text" id = "rollno" class = "rounded-md w-52 p-1 border border-gray-300" placeholder="'22BCAB39'"><br><br>
             Enter password:
-            <input type="password" id="pwd" size="30" name="pwd"> <br><br>
+            <input type="password" id="pwd" class = "rounded-md w-52 p-1 border border-gray-300"> <br><br>
             <h5 id = "msg"> </h5>
-            <button onclick = "login()" id = 'submit'> Submit </button> <br> <br>
+            <button onclick = "login()" id = 'submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Submit </button> <br> <br>
             <a href = "signup.html"> Create an <i>account?</i> </a>
         </div>
-        </div>
     </div>
-    <div class = "box footer"> </div>
-</div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
     <script src = "js/firebaseconfig.js"> </script>

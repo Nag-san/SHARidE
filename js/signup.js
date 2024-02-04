@@ -2,6 +2,23 @@
 
 //Login user checking password with their username
 
+function hi(){
+  var test;
+  try{
+  test = document.localStorage.getItem("user");
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
+
+  if(test !=undefined)
+  {
+    console.log("sda0");
+    document.getElementById("rollno").innerText = test;
+    document.getElementById("pwd").innerText = document.localStorage.getItem("pwd");
+  }
+}
 async function login() {
   const db = firebase.firestore();
   let rollno = document.getElementById("rollno").value;
@@ -14,6 +31,8 @@ async function login() {
     if (doc.exists) {
       const data = doc.data().User_pwd;
       if (pwd == data) {
+        window.localStorage.setItem("user", rollno);
+        window.localStorage.setItem("pwd", pwd);
         window.location.href = "user_homepage.html?" + rollno;
       } else {
         document.getElementById("msg").innerText = "Wrong password";

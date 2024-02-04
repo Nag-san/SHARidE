@@ -204,3 +204,7 @@ async function logout() {
   CancelRide();
   window.location.href = "index.html";
 }
+
+function refresh() {
+  window.location;
+}

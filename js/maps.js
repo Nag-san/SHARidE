@@ -4,6 +4,7 @@ const db = firebase.firestore();
 const sharee_col = db.collection("Sharee");
 const user_col = db.collection("User_details");
 const sharer_col = db.collection("Sharer");
+const review_col = db.collection("User_reviews");
 
 // Declaring variables
 var to_user;
@@ -16,6 +17,7 @@ var url;
 var area;
 
 async function load() {
+  document.getElementById("give_review").style.display = "none";
   var i = 0;
   var url = document.location.href;
   for (i; i <= url.length; i++) {
@@ -165,4 +167,30 @@ async function succ_ride() {
     .then((doc) => {});
 
   window.location.href = "user_homepage.html?" + curr_user;
+}
+
+function review() {
+  document.getElementById("give_review").style.display = "inline";
+}
+
+async function rev_submit(){
+  var rate;
+  let rating = document.getElementById("rating").value;
+  let review1 = document.getElementById("review").innerText;
+  console.log(rating,review1);
+
+  await review_col.doc(to_user).get()
+  .then((doc)=>{
+    rate = doc.data().rating;
+  });
+  rate = rate+rating;
+  await review_col.doc(to_user).update({
+    reviews: firebase.firestore.FieldValue.arrayUnion({
+      review: review1
+    }),
+    rating: rate
+  })
+  .catch((err)=>{
+    console.log(err);
+  });
 }

@@ -6,12 +6,26 @@
     <title>Document</title>
     <script src="https://apis.mappls.com/advancedmaps/api/f0efde99426abd578704537c233bbb03/map_sdk?v=3.0&layer=vector"></script>
     <script src="https://apis.mapmyindia.com/advancedmaps/api/f0efde99426abd578704537c233bbb03/map_sdk_plugins"></script>
-    <link rel="stylesheet" href="css/maps.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body onload="load()">
-    <div id="map"></div>
-    <button id = "getd" onclick = "getd()"> Get Directions </button>
-    <button id=" success" onclick = "succ_ride()"> Successful Ride!!</button>
+  <body onload="load()" class="max-w-screen-md max-h-screen-md">
+    <div class="p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8">
+      <div class="p-4 bg-green-200 flex flex-col space-y-2 items-left">
+    <div id="map" class="w-64 h-64"></div>
+    <button id = "getd" onclick = "getd()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Get Directions </button> <br>
+    <button id = "review" onclick = "review()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Give a review to your buddy! </button> <br>
+    <button id=" success" onclick = "succ_ride()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Successful Ride!!</button> <br>
+    <br><br>
+    <div id = "give_review">
+      <label for= "rating"> Rate 'em out of 5! </label><input type = "text" id = "rating"> <br><br>
+      <label for="review"> Give 'em a review </label><input type = "text" id = "review"> <br><br>
+      <button id = "submit" onclick = "rev_submit()"> Submit </button>
+      </div>
+    </div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
     <script src="js/firebaseconfig.js"></script>

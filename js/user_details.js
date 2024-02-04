@@ -5,15 +5,16 @@ const db = firebase.firestore();
 const sharee_col = db.collection("Sharee");
 const user_col = db.collection("User_details");
 const sharer_col = db.collection("Sharer");
+const review_col = db.collection("User_reviews");
 
 //Declaring all global variables
 var user_id;
 var choice;
 var auth;
-var phoneno;
 var area = document.getElementById("area");
 var pwd;
 var glat, glong;
+var dl;
 const map = new mappls.Map("map", {
   center: { lat: 13.027239970980778, lng: 77.63651315651865 },
 });
@@ -53,6 +54,17 @@ area.addEventListener("change", function () {
   }
 });
 
+
+sharee.addEventListener("click", () =>{
+  document.getElementById("dl").style.display = "none";
+  document.getElementById("dl1").style.display = "none";
+})
+
+sharer.addEventListener("click", () =>{
+  document.getElementById("dl").style.display = "inline";
+  document.getElementById("dl1").style.display = "inline";
+
+})
 //To get user's custom position
 marker1.addListener("click", function () {
   let pos1 = marker1.getPosition();
@@ -81,11 +93,6 @@ function ploc() {
 async function submit() {
   choice = " ";
   auth = true;
-  phoneno = document.getElementById("phoneno").value;
-  if (phoneno.length != 10) {
-    document.getElementById("error").innerText = "Enter a valid number";
-    auth = false;
-  }
   area = document.getElementById("area").value;
   if (document.getElementById("sharee").checked == true) {
     choice = "sharee";
@@ -131,7 +138,6 @@ async function setdetails() {
   await user_col
     .doc(user_id)
     .set({
-      User_no: phoneno,
       User_pwd: pwd,
       User_to: 2,  //going nowhere
       User_pts: 0,
@@ -147,6 +153,12 @@ async function setdetails() {
     })
     .catch((err) => {
       console.log(err);
+    });
+    var desp = document.getElementById("description").value;
+    await review_col.doc(user_id).set({
+      description: desp,
+      rating: 0,
+      reviews: []
     });
 
   //Writing data in either Sharee or Sharer

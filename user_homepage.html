@@ -1,73 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel = "stylesheet" href = "css/styles.css">
-</head>
-<body onload = "hi()"">
-    <div class = "wrapper">
-        <div class = "box header"> 
-                <img src = Sharide.png id="img"> <br> <br>
-                <span id="heading"> <b> SHARidE </b> </span> <br> <br>
-                <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
-     </div>
-        <div class = "box main"> 
-            <span id = "hi"> </span> <br>
-            <span id = "user_points"> </span> <br/> <br>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    onload="hi()"
+    class="max-w-screen-md max-h-screen-md flex flex-col space-y-48 p-7"
+  >
+    <div
+      class="p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8"
+    >
+      <div>
+        <img src="Sharide.png" class="w-32 h-34 rounded-full" /> <br />
+        <span id="heading"> <b> SHARidE </b> </span> <br />
+        <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+        <br />
+        <br />
+        <div class="p-4 bg-green-200 space-x-8">
+          <span id="hi"> </span> <br />
+          <span id="user_points"> </span> <br />
+          <br />
 
-            <button id="Book" onclick = "book()"> Book a ride?</button> <br/><br/>
-            <button id="logout" onclick = "logout()"> Log out? </button>
+          <button
+            id="Book"
+            onclick="book()"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Book a ride?</button
+          ><br />
+          <br />
+          <button
+            id="logout"
+            onclick="logout()"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Log out?
+          </button>
         </div>
-        <div class = "box footer"> Footer </div>
-
+      </div>
     </div>
 
-    <div class = "wrapper-1">
-        <div class = "box header"> 
-            <img src = Sharide.png id="img"> <br> <br>
-                <span id="heading"> <b> SHARidE </b> </span> <br> <br>
-                <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
-     </div>
-     <div class = "box main">
-        <label for = "from"> From: </label>
-        <select name = "from" onchange="select()" id = "from">
-            <option value = "Home" selected> Home </option>
-            <option value = "College"> College </option>
-        </select> <br> <br>
-        <label for = "to"> To: </label>
-        <select name = "to" id = "to" disabled>
-            <option value = "Home"> Home </option> <br> <br>
-            <option value = "College" selected> College </option>
-        </select> <br> <br>
-        <button id = "ShareRide" onclick = "ShareRide()"> Share Ride </button> <br> <br>
-        <button id = "Previous1" onclick = "Previous1()"> Previous </button>
-     </div>
-     <div class = "box footer">
-        footer
-     </div>
+    <div class="max-w-screen-md max-h-screen-md">
+      <div
+        class="p-6 max-w-md mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8"
+      >
+        <div>
+          <img src="Sharide.png" id="img" class="w-32 h-34 rounded-full" />
+          <br />
+          <span id="heading"> <b> SHARidE </b> </span> <br />
+          <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+          <br />
+          <br />
+          <div class="p-4 bg-green-200 space-x-8">
+            <label for="from"> From: </label>
+            <select
+              name="from"
+              onchange="select()"
+              id="from"
+              class="p-3 rounded-lg"
+            >
+              <option value="Home" selected>Home</option>
+              <option value="College">College</option>
+            </select>
+            <br />
+            <br />
+            <label for="to"> To: </label>
+            <select name="to" id="to" disabled class="p-3 rounded-lg">
+              <option value="Home">Home</option>
+              <option value="College" selected>College</option>
+            </select>
+            <br />
+            <br />
+            <button
+              id="ShareRide"
+              onclick="ShareRide()"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Share Ride
+            </button>
+            <br />
+            <br />
+            <button
+              id="Previous1"
+              onclick="Previous1()"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Previous
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-     <div class = "wrapper-1">
-        <div class = "box header"> 
-            <img src = Sharide.png id="img"> <br> <br>
-                <span id="heading"> <b> SHARidE </b> </span> <br> <br>
-                <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
-     </div>
-     <div class = "box main">
-        <table id = "users"> </table>
-        <span id = "Wait"> Please wait </span> <br><br>
-        <button id = "Refresh" onclick = "Refresh()"> Refresh </button>
-        <button id = "BookRide" onclick = "BookRide()"> Book Ride </button> <br> <br>
-        <button id = "CancelRide" onclick = "CancelRide()"> Cancel Ride </button>
-     </div>
-     <div class = "box footer">
-        footer
-     </div>
-            </div>
+    <div class="max-w-screen-md max-h-screen-md">
+      <div
+        class="p-6 max-w-md mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8"
+      >
+        <div>
+          <img src="Sharide.png" id="img" class="w-32 h-34 rounded-full" />
+          <br />
+          <span id="heading"> <b> SHARidE </b> </span> <br />
+          <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
+          <br />
+          <br />
+
+          <div class="p-4 bg-green-200 space-x-8">
+            <table id="users" class = "min-w-full divide-y divide-gray-200"></table>
+            <span id="Wait"> Please wait </span> <br /><br />
+            <button
+              id="Refresh"
+              onclick="Refresh()"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Refresh
+            </button>
+            <br />
+            <br />
+            <button
+              id="BookRide"
+              onclick="BookRide()"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Book Ride
+            </button>
+            <br />
+            <br />
+            <button
+              id="CancelRide"
+              onclick="CancelRide()"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Cancel Ride
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
     <script src="js/firebaseconfig.js"></script>
-    <script src = "js/user_homepage.js"></script>
-</body>
+    <script src="js/user_homepage.js"></script>
+  </body>
 </html>

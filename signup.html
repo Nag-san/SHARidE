@@ -4,31 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
-  <body>
-    <div class="wrapper">
-      <div class="box header">
-        <img src="Sharide.png" id="img" /><br />
+  <body class = "max-w-screen-md max-h-screen-md">
+    <div class="p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8">
+      <div>
+        <img src="Sharide.png" id="img" class="w-32 h-34 rounded-full" /><br>
+        <span id="heading"> <b> SHARidE </b>
         <br />
-        <span id="heading"> <b> SHARidE </b> </span> <br />
-        <br />
-        <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span>
-      </div>
-      <div class="box main">
-        <div id="signup-box">
-          <div id="sign up">
+        <span id="intro"> <i> Commuting. Socialising. Saving. </i> <br> <br>
+      <div class="p-4 bg-green-200">
             <h3>Sign Up</h3>
             Enter college email id:
-            <input type="text" id="email" size="30" name="mail" /><br /><br />
+            <input type="text" id="email" size="30" class = "rounded-md w-52 p-1 border border-gray-300"/><br /><br />
             Enter verification code:
-            <input type="text" id="otp" size="30" name="otp" /> <br /><br />
-            <button onclick="user_auth()" id="submit">Submit</button>
+            <input type="password" id="otp" size="30" class = "rounded-md w-52 p-1 border border-gray-300" /> <br /><br />
+            <button onclick="user_auth()" id="submit"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
           </div>
         </div>
       </div>
-      <div class="box footer">Footer</div>
-    </div>
+  
 
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
