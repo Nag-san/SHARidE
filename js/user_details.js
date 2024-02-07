@@ -82,6 +82,9 @@ function ploc() {
   const successCallback = (position) => {
     glat = position.coords.latitude;
     glong = position.coords.longitude;
+    marker1.setPosition({ lat: glat, lng: glong });
+    map.setCenter({ lat: glat, lng: glong });
+
   };
 
   const errorCallback = (error) => {

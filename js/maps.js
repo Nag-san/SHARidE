@@ -83,7 +83,7 @@ function getd() {
     "," +
     tlng +
     "/?entry=ttu";
-  window.location.href = url;
+  window.parent.postMessage(url, '*');
 }
 
 async function succ_ride() {

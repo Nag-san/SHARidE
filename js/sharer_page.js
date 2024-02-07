@@ -175,6 +175,26 @@ async function hi() {
 }
 
 async function CancelRide() {
+  var i = 0;
+  var url = document.location.href;b
+  for (i; i <= url.length; i++) {
+    if (url[i] == "?") break;
+  }
+  user_id = url.substring(i + 1);
+
+  //getting user's area
+  var user_ref = db.collection("User_details").doc(user_id);
+  await user_ref.get().then((doc) => {
+    if (doc.exists) {
+      area = doc.data().User_area;
+      userto = doc.data().User_to;
+      glat = doc.data().User_lat;
+      glng = doc.data().User_log;
+    }
+  });
+  sharee = db.collection("Sharee").doc(area);
+  sharer = db.collection("Sharer").doc(area);
+
   await sharer.get().then((doc) => {
     for (var i = 0; doc.data().Users[i].userid != user_id; i++) {}
   });
@@ -199,12 +219,6 @@ async function CancelRide() {
   window.location.href = "user_homepage.html?" + user_id;
 }
 
-//To transfer focus to start page
-async function logout() {
-  CancelRide();
-  window.location.href = "index.html";
-}
-
 function refresh() {
-  window.location;
+  hi();
 }
