@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://apis.mappls.com/advancedmaps/api/f0efde99426abd578704537c233bbb03/map_sdk?v=3.0&layer=vector"></script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -12,15 +14,29 @@
     <link href="https://cdn.jsdelivr.net/npm/heroicons@4.0.0/solid.css" rel="stylesheet">
 </head>
 <body class="min-h-screen flex flex-col justify-between bg-green-400">
-      <div class="flex-grow flex flex-col justify-center m-8">
+      <div class="flex-grow flex flex-col rounded-lg justify-center m-8 bg-green-300 p-4">
+        <h5 class="text-lg mb-2"> Update Information </h5>
+        <h6 class="text-md mb-6"> Please complete ride or cancel ride before you update your information!</h6>
+        <div class="flex flex-col justify-between space-y-4">
+          <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" id="Personal_update">
+            Personal Details
+          </button>
+          <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" id="Choice_update"> Sharee or Sharer Change? </button>
+          <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" id="Location_update"> Location Update </button>
+        </div>
+        </div>
+        
+        <div id="Update" class="flex-grow flex flex-col rounded-lg justify-center m-8 bg-green-300 space-y-4 p-4">
+        </div>
+        <h6 id="err" class="ml-3"></h6>
 
-      <button
+        <button
       id="logout"
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      class="mt-6 m-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
     >
       Log out?
     </button>
-</div>
+
 
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>

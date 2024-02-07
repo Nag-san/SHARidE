@@ -10,19 +10,18 @@
     />
 </head>
 <body class="min-h-screen flex flex-col justify-between bg-green-400">
-      <div class="flex-grow flex flex-col justify-center m-8">
+      <div class="flex-grow flex flex-col justify-center p-5 rounded-lg bg-green-300 space-y-3 m-8">
             <label> From: </label>
             <select
               id="from"
-              class="p-3 rounded-lg"
+              class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
             >
               <option value="Home" selected>Home</option>
               <option value="College">College</option>
             </select>
             <br />
-            <br />
             <label for="to"> To: </label>
-            <select name="to" id="to" disabled class="p-3 rounded-lg">
+            <select name="to" id="to" disabled class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300">
               <option value="Home">Home</option>
               <option value="College" selected>College</option>
             </select>
@@ -34,7 +33,6 @@
             >
               Share Ride
             </button>
-            <br />
             <br />
             <button
               id="Previous1"

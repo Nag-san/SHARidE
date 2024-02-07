@@ -101,8 +101,7 @@ async function hi() {
   }
   if(avail2==0)
   {
-    let msg = document.createTextNode("No users available, please refresh after a while");
-    document.getElementById("Avail_users").appendChild(msg);
+    document.getElementById("Wait").innerText = "There are no users currently available!";
   }
   else{
 
@@ -220,5 +219,9 @@ async function CancelRide() {
 }
 
 function refresh() {
+  avail = 0;
+    avail2 = 0; 
+    document.getElementById("Avail_users").innerHTML = " ";
+    document.getElementById("Wait").innerText = " ";
   hi();
 }

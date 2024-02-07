@@ -9,27 +9,31 @@
   />
     <title>Document</title>
   </head>
-  <body onload = "hi()" class="max-w-screen-md max-h-screen-md">
-    <div class= "p-6 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg flex items-center space-x-8">
-      <div class="p-4 bg-green-200 flex flex-col space-y-2 items-left">
-        <div id="main">
-          <img src="Sharide.png" id="img" class="w-32 h-34 rounded-full" /><br />
-          <span id="heading"> <b> SHARidE </b> </span> <br />
-          <span id="intro"> <i> Commuting. Socialising. Saving. </i> </span> <br> <br>
-        </div>
-      <div class="box main">
-        <table id="Avail_users" class="min-w-full divide-y divide-gray-200 border border-white">
-            <tr> 
+  <body onload = "hi()" class="min-h-screen flex flex-col justify-between bg-green-400">
+    <div class="flex-grow flex flex-col justify-center space-y-8 p-4 m-8 bg-green-300">
+      
+        <table id="Avail_users" class="min-w-full divide-y p-4 divide-gray-200 border border-white">  
+          <tr> 
                 <th class = "px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> User ID  </th>
                 <th class = "px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> Distance </th>
                 <th class = "px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> Duration </th>
                 <th class = "px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> Accept? </th>
             </tr>
-        </table> <br/> <br/>
-        <button id="Refresh" onclick="refresh()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Refresh </button> <br> <br>
-        <button id="CancelRide" onclick="CancelRide()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Cancel Ride</button> <br><br>
+        </table> <br/>
+        <span id="Wait" class="text-lg text-red-600 rounded-lg p-4 bg-green-400">  </span> <br /><br />
+        <div class="flex flex-row justify-center">
+        <button id="Refresh" onclick="refresh()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> <p class="flex items-center">Refresh <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+        </svg> </button> <br> 
+        </p>
+        </div>
+        <div class="flex flex-row justify-center">
+        <button id="CancelRide" onclick="CancelRide()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><p class="flex items-center">Cancel Ride <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+        </svg></button> <br>
+        </p>
+        </div>
       </div>
-</div>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
     <script src="js/firebaseconfig.js"></script>

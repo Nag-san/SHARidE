@@ -170,7 +170,13 @@ async function succ_ride() {
 }
 
 function review() {
-  document.getElementById("give_review").style.display = "inline";
+  var status = document.getElementById("give_review").style.display;
+  if(status=="none")
+  {
+    document.getElementById("give_review").style.display = "inline"
+  }
+  else
+  document.getElementById("give_review").style.display = "none";
 }
 
 async function rev_submit(){

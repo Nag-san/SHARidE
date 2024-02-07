@@ -114,8 +114,8 @@ document
   .getElementById("Refresh")
   .addEventListener("click", async function Refresh() {
     avail = 0;
-    avail2 = 0;
-    document.getElementById("users").innerHTML = "";
+    avail2 = 0; 
+    document.getElementById("users").innerHTML = " ";
     document.getElementById("Wait").innerText = " ";
     ShareRide();
   });
