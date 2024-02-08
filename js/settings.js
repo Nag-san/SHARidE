@@ -77,16 +77,17 @@ document
     t4.value = pwd;
 
     btn.innerText = "Update";
-
+ 
+    t1.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
     container.appendChild(l1);
     container.appendChild(t1);
-
+    t2.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
     container.appendChild(l2);
     container.appendChild(t2);
-
+    t3.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
     container.appendChild(l3);
     container.appendChild(t3);
-
+    t4.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
     container.appendChild(l4);
     container.appendChild(t4);
 
@@ -112,6 +113,7 @@ document
       document.getElementById("err").innerText = "Updated successfully!";
     });
 
+    btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
     container.appendChild(btn);
   });
 
@@ -133,6 +135,10 @@ document
     l1.innerHTML = "Sharee: ";
     var l2 = document.createElement("Label");
     l2.innerHTML = "Sharer: ";
+    var l3 = document.createElement('Label');
+    l3.innerHTML = "Choose your role: "
+    var d1 = document.createElement('div');
+    var d2 = document.createElement('div');
 
     r1.setAttribute("name", "choice");
     r2.setAttribute("name", "choice");
@@ -158,11 +164,15 @@ document
     } else {
       r2.checked = true;
     }
-
-    container.appendChild(l1);
-    container.appendChild(r1);
-    container.appendChild(l2);
-    container.appendChild(r2);
+    d1.classList = ("flex flex-col bg-green-200 p-6 rounded-lg space-y-4 self-stretch");
+    d2.classList = ("flex items-center space-x-8");
+    container.appendChild(d1);
+    d1.appendChild(l3);
+    d1.appendChild(d2);
+    d2.appendChild(l1);
+    d2.appendChild(r1);
+    d2.appendChild(l2);
+    d2.appendChild(r2);
 
     var btn = document.createElement("button");
     btn.innerText = "Update";
@@ -207,6 +217,7 @@ document
       }
       document.getElementById("err").innerText = "Updated successfully!";
     });
+    btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
     container.appendChild(btn);
   });
 
@@ -239,7 +250,7 @@ document
     var areas = ['Kalyan Nagar', 'KR Puram', 'Hennur', 'Hebbal'];
 
     let s = document.createElement('select');
-    s.id = "select";
+    s.setAttribute('id','select1'); 
     for(var i=0;i<4;i++)
     {
         var option = document.createElement('option');
@@ -247,8 +258,26 @@ document
         option.value = areas[i];
         s.appendChild(option);
     }
-
+    s.classList = ("rounded-md w-52 p-1 border border-gray-300");
     container.appendChild(s);
+    
+    s.value = user_area;
+    document.getElementById('select1').addEventListener('change', function(){
+      var area1 = s.value;
+  if (area1 == "Hennur") {
+    map.setCenter({ lat: 13.038167023942243, lng: 77.6434407896191 });
+    marker1.setPosition({ lat: 13.038167023942243, lng: 77.6434407896191 });
+  } else if (area1 == "KR Puram") {
+    map.setCenter({ lat: 13.017553963882222, lng: 77.70440617135745 });
+    marker1.setPosition({ lat: 13.017553963882222, lng: 77.70440617135745 });
+  } else if (area1 == "Hebbal") {
+    map.setCenter({ lat: 13.035802644453957, lng: 77.5977116982567 });
+    marker1.setPosition({ lat: 13.035802644453957, lng: 77.5977116982567 });
+  } else {
+    map.setCenter({ lat: 13.027239970980778, lng: 77.63651315651865 });
+    marker1.setPosition({ lat: 13.027239970980778, lng: 77.63651315651865 });
+  }
+    })
 
     let map1 = document.createElement('map');
     let l1 = document.createElement('Label');
@@ -282,7 +311,7 @@ document
       btn.innerText = "Update";
 
       btn.addEventListener('click', async function (){
-        var area = document.getElementById('select').value;
+        var area = document.getElementById('select1').value;
 
         if(user_area!=area)
         {
@@ -331,8 +360,8 @@ document
         document.getElementById('err').innerText = "Updated Successfully!";
         
       });
-
-      container.appendChild(btn);
+    btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
+    container.appendChild(btn);
   
   });
 

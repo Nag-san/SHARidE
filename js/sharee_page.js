@@ -25,7 +25,6 @@ function get_userid(url) {
 
 //To set user status to true and get available users from the same area, different choice
 async function ShareRide() {
-  //changing user to value
   user_id = get_userid(window.location.href);
   //getting user's area, choice
   var user_ref = db.collection("User_details").doc(user_id);
@@ -41,9 +40,6 @@ async function ShareRide() {
 
   //status change
   if (choice == "sharee") {
-    await sharee.get().then((doc) => {
-      for (var i = 0; doc.data().Users[i].userid != user_id; i++) {}
-    });
     await sharee_col.doc(area).update({
       Users: firebase.firestore.FieldValue.arrayRemove({
         userid: user_id,
@@ -115,7 +111,12 @@ document
   .addEventListener("click", async function Refresh() {
     avail = 0;
     avail2 = 0; 
-    document.getElementById("users").innerHTML = " ";
+    var table =  document.getElementById("users");
+    var rows = table.rows.length;
+    for(var i =1; i<rows;i++)
+    {
+      table.deleteRow(i);
+    }
     document.getElementById("Wait").innerText = " ";
     ShareRide();
   });
@@ -127,9 +128,7 @@ document
   .addEventListener("click", async function CancelRide() {
     const sharer = db.collection("Sharer").doc(area);
     const sharee = db.collection("Sharee").doc(area);
-    await sharee.get().then((doc) => {
-      for (var i = 0; doc.data().Users[i].userid != user_id; i++) {}
-    });
+   
     await sharee_col.doc(area).update({
       Users: firebase.firestore.FieldValue.arrayRemove({
         userid: user_id,
@@ -168,4 +167,6 @@ document
     } else {
       window.parent.postMessage(`maps.html?${user1}`,'*');
     }
+    window.postMessage(`${user1}`,'http://127.0.0.1:3000/messaging.html');
+    console.log("shareepage");
   });

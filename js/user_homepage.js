@@ -31,6 +31,7 @@ function get_userid(url) {
   console.log("hello");
    var choice, data;
    var url = document.location.href;
+   localStorage.setItem("curr_page",url);
   user_id = get_userid(url);
   document.getElementById("hi").innerText = `Hi ${user_id} !`;
   await user_col

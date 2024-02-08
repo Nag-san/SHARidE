@@ -1,11 +1,14 @@
 //Declaring all collections
 const db = firebase.firestore();
+const dbase = getDatabase(app);
 const sharee_col = db.collection("Sharee");
 const user_col = db.collection("User_details");
 const sharer_col = db.collection("Sharer");
 const msg_col = db.collection("Messaging");
 var curr_user = "22BCAB29";
 var to_user = "22BCAB39";
+
+console.log(firebase);
 
 
 async function hi() {
@@ -14,15 +17,44 @@ async function hi() {
   for (i; i <= url.length; i++) {
     if (url[i] == "?") break;
   }
-  url = url.substring(i+1);
-  to_user = url.substring(0,8);
-  curr_user = url.substring(8);
+  curr_user = url.substring(i+1);
+  var users = [];
 
+  await user_col.doc(curr_user).get()
+  .then((doc)=>{
+    Array.prototype.push.apply(users, doc.data().User_messager)
+  });
+  console.log(users);
+  for(var i=0; i<users.length; i++)
+  {
+      let btn = document.createElement("button");
+      btn.innerText = users[i];
+      btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded");
+      btn.addEventListener('click', loadmsg(btn.innerText));
+      document.getElementById("users").appendChild(btn);
+  }
+}
+async function loadmsg(string){
   var inn = 0;
   var out = 0;
-  console.log(firebase.firestore())
-  document.getElementById("User").innerText = to_user;
-  msg_col
+  to_user = string;
+
+  var i = 0;
+  var url = document.location.href;
+  for (i; i <= url.length; i++) {
+    if (url[i] == "?") break;
+  }
+
+  curr_user = url.substring(i+1);
+  const documentRef = ref(dbase, `Messaging/${curr_user}`);
+
+  onValue(documentRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log('Document data:', data);
+    // Do something with the updated data
+  });
+
+  await msg_col
     .doc(curr_user)
     .get()
     .then((doc) => {
@@ -36,7 +68,6 @@ async function hi() {
           msg1.appendChild(text1);
           msg1.style.textAlign = "right";
           tr.appendChild(msg1);
-          console.log(msg1)
           document.getElementById("messages").appendChild(tr);
         }
         if (out != undefined) {
@@ -52,11 +83,15 @@ async function hi() {
     .catch((err) => {
       console.log(err);
     });
-}
+  }
 
-//Sending message
-async function send() {
+window.onload=(event) => {
+  hi();
+};
+
+document.getElementById('send').addEventListener('click', async function send(){
   //checking blank message
+  console.log("heree");
   var msg;
   if (document.getElementById("msg").value.charCodeAt(0) > 32) {
     msg = document.getElementById("msg").value;
@@ -101,9 +136,10 @@ async function send() {
 
   document.getElementById("msg").value = "";
   location.reload();
-}
+})
 
-function reviews(string){
+/*function reviews(string){
   var us_review = string.innerText;
   window.location.href = "reviews.html?" + us_review;
 }
+*/

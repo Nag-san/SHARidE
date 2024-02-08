@@ -20,13 +20,32 @@ async function load() {
   document.getElementById("give_review").style.display = "none";
   var i = 0;
   var url = document.location.href;
+  localStorage.setItem("curr_page",url);
   for (i; i <= url.length; i++) {
     if (url[i] == "?") break;
   }
   url = url.substring(i + 1);
   to_user = url.substring(0, 8);
   curr_user = url.substring(8);
-
+  var users1 = [];
+  await user_col.doc(curr_user).get()
+  .then((doc)=>{
+     users1 = doc.data().User_messager
+  })
+  for(var i=0;i<users1.length;i++){
+    if(users1[i]==to_user)
+    break;
+  }
+if(i==users1.length)
+{
+  await user_col.doc(curr_user).set({
+    User_messager: [to_user],
+    },
+    {merge:true})
+  .catch((err)=>{
+    console.log(err);
+  });
+}
   await user_col
     .doc(curr_user)
     .get()

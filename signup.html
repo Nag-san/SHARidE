@@ -6,14 +6,12 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
-  <body class = "min-h-screen flex flex-col justify-between bg-green-400">
-    <div class="p-2 max-w-sm mx-auto bg-green-300 rounded-xl shadow-lg mt-11 mb-11 flex flex-col items-center space-x-8">
-      <div> 
-        <div class = "flex p-10">
-          <img class = "w-32 h-34 rounded-full" src = Sharide.png id="img">
+  <body class = "min-h-screen min-w-screen flex flex-col justify-between bg-green-400">
+    <div class="p-5 mx-auto bg-green-300 rounded-xl shadow-lg mt-11 mb-11 flex flex-col" style="width: 400px">
+      <div class="flex flex-col"> 
           <div class  ="flex flex-col p-4">
-          <div class = "text-4xl font-medium"> <b> SHARidE </b> <br></div>
-          <div class = "text-sm font-thin"> <i> Commuting. Socialising. Saving. </i> </div><br>
+          <div class = "text-3xl font-bold"> <b> SHARidE </b> <br></div>
+          <div class = "text-lg"> <i> Commuting. Socialising. Saving. </i> </div><br>
       </div>
       </div>
       <div class="p-4 bg-green-200 flex flex-col mb-11 rounded-md space-x-3 space-y-2">
@@ -22,7 +20,7 @@
             <input type="text" id="email" required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500" /><br />
             Enter verification code: *
             <input type="password" id="otp" required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500" /> <br /><br />
-            <h5 id = "msg1" class = "text-red-500"><i> *Required fields </i></h5>
+            <h5 id = "msg1" class = "text-red-500"><i></i></h5>
             <button id="signin"  class=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
           </div>
         </div>

@@ -167,7 +167,8 @@ async function setdetails() {
       User_log: glong,
       User_area: area,
       User_choice: choice,
-      User_sharer: " "
+      User_sharer: " ",
+      User_messager: []
     })
     .then((resolve) => {
       console.log(`Data added`);

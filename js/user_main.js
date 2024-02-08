@@ -25,7 +25,8 @@ catch(err)
 }
 
 window.onload= (event) => {
-  console.log("page is fully loaded user_main.js");
+  console.log(localStorage.getItem('curr_page'));
+  
   hello()
 };
 
@@ -33,7 +34,6 @@ window.onload= (event) => {
 document.getElementById("homepage").addEventListener("click", function () {
   let val = this.value;
   document.getElementById("iframee").setAttribute('src', `user_homepage.html?${val}`);
-  console.log(window.name);
 });
 document.getElementById("messaging").addEventListener("click", function () {
   let val = this.value;

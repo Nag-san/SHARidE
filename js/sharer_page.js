@@ -24,6 +24,7 @@ var time;
 async function hi() {
   var i = 0;
   var url = document.location.href;
+  localStorage.setItem("curr_page",url);
   for (i; i <= url.length; i++) {
     if (url[i] == "?") break;
   }
@@ -43,12 +44,6 @@ async function hi() {
   sharer = db.collection("Sharer").doc(area);
 
   //status change
-  await sharer.get().then((doc) => {
-    for (i = 0; doc.data().Users[i].userid != user_id; i++) {}
-  })
-  .catch((err)=>{
-    console.log(err);
-  });
 
   await sharer_col.doc(area).update({
     Users: firebase.firestore.FieldValue.arrayRemove({
@@ -89,7 +84,6 @@ async function hi() {
       .get()
       .then((doc) => {
         to = doc.data().User_to;
-        var rollno = doc.data().User_no;
       })
       .catch((err) => {
         console.log(err);
@@ -99,83 +93,83 @@ async function hi() {
       avail2++;
     }
   }
-  if(avail2==0)
-  {
-    document.getElementById("Wait").innerText = "There are no users currently available!";
-  }
-  else{
+  if (avail2 == 0) {
+    document.getElementById("Wait").innerText =
+      "There are no users currently available!";
+  } else {
+    //fetch location of available users
+    var ulat, ulng;
+    for (i = 0; i < avail2; i++) {
+      await user_col
+        .doc(avail2_users[i])
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            ulat = doc.data().User_lat;
+            ulng = doc.data().User_log;
+          } else console.log("No user available");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-  //fetch location of available users
-  var ulat, ulng;
-  for (i = 0; i < avail2; i++) {
-    await user_col
-      .doc(avail2_users[i])
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          ulat = doc.data().User_lat;
-          ulng = doc.data().User_log;
-        } else console.log("No user available");
-      })
-      .catch((err) => {
-        console.log(err);
+      //calculating distance and duration using mappls API
+      glat = glat.toString();
+      glng = glng.toString();
+      ulat = ulat.toString();
+      ulng = ulng.toString();
+      let rest = glng + "," + glat + ";" + ulng + "," + ulat;
+      let result =
+        "https://apis.mappls.com/advancedmaps/v1/f0efde99426abd578704537c233bbb03/distance_matrix/driving/" +
+        rest;
+      let res = await fetch(result);
+      let resJson = await res.json();
+      dist = resJson.results.distances[0][1];
+      dist = dist / 1000;
+      time = resJson.results.durations[0][1];
+      time = time / 60;
+
+      //creating table
+      let tr = document.createElement("tr");
+      var us = avail2_users[i];
+      let text1 = document.createTextNode(avail2_users[i]);
+      let text2 = document.createTextNode(`${dist.toFixed(2)} km`);
+      let text3 = document.createTextNode(`${time.toFixed(2)} mins`);
+      let btn = document.createElement("button");
+      btn.innerText = "YEP!";
+      btn.id = us;
+      btn.addEventListener("click", async function () {
+        us = btn.id;
+        await user_col
+          .doc(us)
+          .update({
+            User_sharer: user_id,
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        window.location.href = "maps.html?" + us + user_id;
       });
-
-    //calculating distance and duration using mappls API
-    glat = glat.toString();
-    glng = glng.toString();
-    ulat = ulat.toString();
-    ulng = ulng.toString();
-    let rest = glng + "," + glat + ";" + ulng + "," + ulat;
-    let result =
-      "https://apis.mappls.com/advancedmaps/v1/f0efde99426abd578704537c233bbb03/distance_matrix/driving/" +
-      rest;
-    let res = await fetch(result);
-    let resJson = await res.json();
-    dist = resJson.results.distances[0][1];
-    dist = dist / 1000;
-    time = resJson.results.durations[0][1];
-    time = time / 60;
-
-    //creating table
-    let tr = document.createElement("tr");
-    var us = avail2_users[i];
-    let text1 = document.createTextNode(avail2_users[i]);
-    let text2 = document.createTextNode(`${dist.toFixed(2)} km`);
-    let text3 = document.createTextNode(`${time.toFixed(2)} mins`);
-    let btn = document.createElement("button");
-    btn.innerText = "Click ME!";
-    btn.id = us;
-    btn.addEventListener('click',async function(){
-      us = btn.id;
-      await user_col.doc(us).update({
-        User_sharer: user_id
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
-      window.location.href = "maps.html?" + us + user_id;
-    })
-    let t1 = document.createElement("td");
-    let t2 = document.createElement("td");
-    let t3 = document.createElement("td");
-    let t4 = document.createElement("td");
-    t1.appendChild(text1);
-    t2.appendChild(text2);
-    t3.appendChild(text3);
-    t4.appendChild(btn);
-    tr.appendChild(t1);
-    tr.appendChild(t2);
-    tr.appendChild(t3);
-    tr.appendChild(t4);
-    document.getElementById("Avail_users").appendChild(tr);
+      let t1 = document.createElement("td");
+      let t2 = document.createElement("td");
+      let t3 = document.createElement("td");
+      let t4 = document.createElement("td");
+      t1.appendChild(text1);
+      t2.appendChild(text2);
+      t3.appendChild(text3);
+      t4.appendChild(btn);
+      tr.appendChild(t1);
+      tr.appendChild(t2);
+      tr.appendChild(t3);
+      tr.appendChild(t4);
+      document.getElementById("Avail_users").appendChild(tr);
+    }
   }
-}
 }
 
 async function CancelRide() {
   var i = 0;
-  var url = document.location.href;b
+  var url = document.location.href;
   for (i; i <= url.length; i++) {
     if (url[i] == "?") break;
   }
@@ -193,10 +187,6 @@ async function CancelRide() {
   });
   sharee = db.collection("Sharee").doc(area);
   sharer = db.collection("Sharer").doc(area);
-
-  await sharer.get().then((doc) => {
-    for (var i = 0; doc.data().Users[i].userid != user_id; i++) {}
-  });
 
   await sharer_col.doc(area).update({
     Users: firebase.firestore.FieldValue.arrayRemove({
@@ -220,8 +210,12 @@ async function CancelRide() {
 
 function refresh() {
   avail = 0;
-    avail2 = 0; 
-    document.getElementById("Avail_users").innerHTML = " ";
-    document.getElementById("Wait").innerText = " ";
+  avail2 = 0;
+  var table = document.getElementById("Avail_users");
+  var rowCount = table.rows.length;
+  for (var i = 1; i < rowCount; i++) {
+    table.deleteRow(i);
+  }
+  document.getElementById("Wait").innerText = " ";
   hi();
 }

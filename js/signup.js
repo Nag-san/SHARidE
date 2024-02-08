@@ -2,7 +2,22 @@
 
 //Login user checking password with their username
 
-submit.addEventListener('click', async function login() {
+window.onload = (event=>{
+  try{
+  var user = localStorage.getItem('user');
+  var pwd = localStorage.getItem('pwd');
+  document.getElementById("rollno").value = user;
+  document.getElementById("pwd").value = pwd;
+  document.getElementById("rollno").classList = ('mt-1 p-2 border rounded-md focus:outline-none bg-gray-200 focus:border-red-500');
+  document.getElementById('pwd').classList = ('mt-1 p-2 border rounded-md focus:outline-none bg-gray-200 focus:border-red-500');
+  }
+  catch(err){
+    console.log(err);
+  };
+
+  
+})
+document.getElementById('submit').addEventListener('click', async function login() {
   const db = firebase.firestore();
   let rollno = document.getElementById("rollno").value;
   let pwd = document.getElementById("pwd").value;
@@ -18,8 +33,8 @@ submit.addEventListener('click', async function login() {
     if (doc.exists) {
       const data = doc.data().User_pwd;
       if (pwd == data) {
-        window.localStorage.setItem("user", rollno);
-        window.localStorage.setItem("pwd", pwd);
+        localStorage.setItem("user", rollno);
+        localStorage.setItem("pwd", pwd);
         window.location.href = "user_main.html?"+rollno;
       } else {
         document.getElementById("msg").innerText = "Ooops, your password is wrong";
