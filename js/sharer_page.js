@@ -154,6 +154,11 @@ async function hi() {
       let t2 = document.createElement("td");
       let t3 = document.createElement("td");
       let t4 = document.createElement("td");
+      t1.classList = ("px-4 py-2");
+      t2.classList = ("px-4 py-2 text-center items-center");
+      t3.classList = ("px-4 py-2 text-center items-center");
+      t4.classList = ("px-4 py-2 text-center items-center");
+      btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded");
       t1.appendChild(text1);
       t2.appendChild(text2);
       t3.appendChild(text3);

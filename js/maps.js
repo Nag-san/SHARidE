@@ -18,20 +18,28 @@ var area;
 
 async function load() {
   document.getElementById("give_review").style.display = "none";
+  document.getElementById("review").style.display = "none";
   var i = 0;
   var url = document.location.href;
-  localStorage.setItem("curr_page",url);
-  for (i; i <= url.length; i++) {
+  for (i=0; i < url.length; i++) {
     if (url[i] == "?") break;
   }
-  url = url.substring(i + 1);
+  url = url.substring(i+1);
   to_user = url.substring(0, 8);
   curr_user = url.substring(8);
   var users1 = [];
+var choice;
   await user_col.doc(curr_user).get()
   .then((doc)=>{
-     users1 = doc.data().User_messager
+     users1 = doc.data().User_messager,
+     (clat = doc.data().User_lat), 
+     (clng = doc.data().User_log),
+     choice = doc.data().User_choice
   })
+  .catch((err)=>{
+    console.log(err);
+  });
+
   for(var i=0;i<users1.length;i++){
     if(users1[i]==to_user)
     break;
@@ -45,40 +53,57 @@ if(i==users1.length)
   .catch((err)=>{
     console.log(err);
   });
-}
-  await user_col
-    .doc(curr_user)
-    .get()
-    .then((doc) => {
-      (clat = doc.data().User_lat), (clng = doc.data().User_log);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+}  
 
   await user_col
     .doc(to_user)
     .get()
     .then((doc) => {
       (tlat = doc.data().User_lat),
-        (tlng = doc.data().User_log),
-        (area = doc.data().User_area);
+      (tlng = doc.data().User_log)
     })
     .catch((err) => {
       console.log(err);
     });
+    console.log(to_user,tlat,tlng);
+if(choice=='sharee'){
+  document.getElementById('enter').style.display = "inline";
+document.getElementById('disp').style.display = 'none';
+const num = Math.floor(10000 + Math.random() * 90000);
+await user_col.doc(curr_user).update({
+  User_otp: num
+})
+console.log(num);
+}
+else{
+  await user_col.doc(to_user).get()
+  .then((doc)=>[
+    num = doc.data().User_otp
+  ])
+  if(num==" ")
+  {
+    console.log("waiting", num);
+    load();
+  }
+  document.getElementById('otp_disp').innerText = num;
+  document.getElementById('enter').style.display = "none";
+document.getElementById('disp').style.display = 'inline';
+}
+
 
   console.log(clat, clng, tlat, tlng);
-  map = new mappls.Map("map", { center: { lat: clat, lng: clng } });
+  map = new mappls.Map("map", { center: { lat: clat, lng: clng }, fullscreenControl: false });
   var marker1 = new mappls.Marker({
     map: map,
     draggable: false,
+    popupHtml: "Your Location",
     position: { lat: clat, lng: clng },
   });
 
   var marker2 = new mappls.Marker({
     map: map,
     draggable: false,
+    popupHtml: "Friend's Location",
     position: { lat: tlat, lng: tlng },
   });
 
@@ -89,8 +114,8 @@ if(i==users1.length)
       { lat: tlat, lng: tlng },
     ],
   });
-}
 
+}
 function getd() {
   url =
     "https://www.google.com/maps/dir/" +
@@ -105,11 +130,26 @@ function getd() {
   window.parent.postMessage(url, '*');
 }
 
+function refresh(){
+  succ_ride();
+}
+
 async function succ_ride() {
+  var otp;
+  otp = document.getElementById('otp').value;
   var choice1, choice2;
   var user1_pts = 0;
   var user1_rides = 0;
-
+  var num;
+  var i = 0;
+  var url = document.location.href;
+  for (i=0; i < url.length; i++) {
+    if (url[i] == "?") break;
+  }
+  url = url.substring(i+1);
+  to_user = url.substring(0, 8);
+  curr_user = url.substring(8);
+  
   //Getting user's area, choice, user points and rides
   var user_ref = db.collection("User_details").doc(curr_user);
   await user_ref.get().then((doc) => {
@@ -121,6 +161,41 @@ async function succ_ride() {
     }
   });
 
+  if(choice1=='sharer')
+  {
+    await user_col.doc(curr_user).get()
+    .then((doc)=>{
+      num = doc.data().Otp_status
+    })
+    if(num==' ')
+    { document.getElementById('msg2').innerText ="Waiting for the user to enter otp. Kindly refresh";
+    return;
+    }
+    else
+    {
+      document.getElementById("review").style.display = "none";
+     document.getElementById('msg2').innerText ="Hope you SHARidE SAFELY!";
+    }
+  }
+  else
+  {
+    await user_col.doc(curr_user).get()
+    .then((doc)=>{
+      num = doc.data().User_otp
+    })
+    if(otp!=num)
+    { document.getElementById('msg1').innerText ="Oops! Its the wrong otp";
+    return;
+    }
+    else{
+      document.getElementById("review").style.display = "none";
+      await user_col.doc(to_user).update({
+        Otp_status: "Done"
+      })
+      document.getElementById('msg1').innerText ="OTP is thus correct. Hope you SHARidE SAFELY!";
+    }
+  }
+
   user_ref = db.collection("User_details").doc(to_user);
   await user_ref.get().then((doc)=>{
     choice2 = doc.data().User_choice
@@ -131,9 +206,7 @@ async function succ_ride() {
 
   //Changing both the user's status to false
   if (choice1 == "sharee" && choice2 == "sharer") {
-    await sharee.get().then((doc) => {
-      for (var i = 0; doc.data().Users[i].userid != curr_user; i++) {}
-    });
+    
     await sharee_col.doc(area).update({
       Users: firebase.firestore.FieldValue.arrayRemove({
         userid: curr_user,
@@ -153,6 +226,7 @@ async function succ_ride() {
     await user_col.doc(curr_user).update({
       User_sharer: " ",
       User_rides: user1_rides,
+      User_otp: " "
     });
 
   } else {
@@ -160,11 +234,10 @@ async function succ_ride() {
 
     await user_col.doc(curr_user).update({
       User_pts: user1_pts,
+      Otp_status: " "
     });
 
-    await sharer.get().then((doc) => {
-      for (var i = 0; doc.data().Users[i].userid != curr_user; i++) {}
-    });
+  
     await sharer_col.doc(area).update({
       Users: firebase.firestore.FieldValue.arrayRemove({
         userid: curr_user,
@@ -178,14 +251,7 @@ async function succ_ride() {
       }),
     });
   }
-
-  //Inrementing user points and no. of rides
-  user_col
-    .doc(curr_user)
-    .get()
-    .then((doc) => {});
-
-  window.location.href = "user_homepage.html?" + curr_user;
+  document.getElementById("review").style.display = "inline";
 }
 
 function review() {
@@ -201,7 +267,7 @@ function review() {
 async function rev_submit(){
   var rate;
   let rating = document.getElementById("rating").value;
-  let review1 = document.getElementById("review").innerText;
+  let review1 = document.getElementById("review").value;
   console.log(rating,review1);
 
   await review_col.doc(to_user).get()
@@ -218,4 +284,6 @@ async function rev_submit(){
   .catch((err)=>{
     console.log(err);
   });
+
+  setTimeout((window.location.href = "user_homepage.html?" + curr_user), 5000);
 }

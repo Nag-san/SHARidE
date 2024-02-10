@@ -1,15 +1,12 @@
 //Declaring all collections
 const db = firebase.firestore();
-const dbase = getDatabase(app);
+const database = firebase.database();
 const sharee_col = db.collection("Sharee");
 const user_col = db.collection("User_details");
 const sharer_col = db.collection("Sharer");
 const msg_col = db.collection("Messaging");
-var curr_user = "22BCAB29";
-var to_user = "22BCAB39";
-
-console.log(firebase);
-
+var curr_user;
+var to_user;
 
 async function hi() {
   var i = 0;
@@ -24,16 +21,25 @@ async function hi() {
   .then((doc)=>{
     Array.prototype.push.apply(users, doc.data().User_messager)
   });
-  console.log(users);
   for(var i=0; i<users.length; i++)
   {
+
       let btn = document.createElement("button");
       btn.innerText = users[i];
-      btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded");
-      btn.addEventListener('click', loadmsg(btn.innerText));
+      btn.classList = ("bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded");
+      btn.addEventListener('click', async function listen(){
+        loadmsg(`${this.innerText}`);
+        const dbref = firebase.database().ref(`/Messaging/${curr_user}`);
+        await dbref.on("value", (snapshot) => {
+          const data = snapshot.val();
+          console.log(data);
+      });
+      
       document.getElementById("users").appendChild(btn);
-  }
+  });
 }
+}
+
 async function loadmsg(string){
   var inn = 0;
   var out = 0;
@@ -45,14 +51,7 @@ async function loadmsg(string){
     if (url[i] == "?") break;
   }
 
-  curr_user = url.substring(i+1);
-  const documentRef = ref(dbase, `Messaging/${curr_user}`);
-
-  onValue(documentRef, (snapshot) => {
-    const data = snapshot.val();
-    console.log('Document data:', data);
-    // Do something with the updated data
-  });
+ curr_user = url.substring(i+1);
 
   await msg_col
     .doc(curr_user)
@@ -91,7 +90,6 @@ window.onload=(event) => {
 
 document.getElementById('send').addEventListener('click', async function send(){
   //checking blank message
-  console.log("heree");
   var msg;
   if (document.getElementById("msg").value.charCodeAt(0) > 32) {
     msg = document.getElementById("msg").value;

@@ -106,6 +106,10 @@ async function ShareRide() {
   }
 }
 
+window.onload = (event=>{
+  Refresh();
+})
+
 document
   .getElementById("Refresh")
   .addEventListener("click", async function Refresh() {
@@ -113,7 +117,7 @@ document
     avail2 = 0; 
     var table =  document.getElementById("users");
     var rows = table.rows.length;
-    for(var i =1; i<rows;i++)
+    for(var i=0; i<rows;i++)
     {
       table.deleteRow(i);
     }
@@ -162,11 +166,12 @@ document
       });
 
     if (user1 == " " || user1 == undefined) {
+      console.log("heree");
       document.getElementById("Wait").innerText =
         "Waiting for the users to accept";
     } else {
+      console.log('maps');
       window.parent.postMessage(`maps.html?${user1}`,'*');
     }
-    window.postMessage(`${user1}`,'http://127.0.0.1:3000/messaging.html');
     console.log("shareepage");
   });

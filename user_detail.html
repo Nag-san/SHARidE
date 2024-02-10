@@ -29,12 +29,14 @@
       <div class="flex flex-col space-y-3 bg-green-200 p-6 rounded-lg"> 
     
         <label for="area"> Choose your area: * </label>
+        
         <select name="area" id="area" class = "rounded-md w-52 p-1 border border-gray-300">
           <option value="Kalyan Nagar" selected>Kalyan Nagar</option>
           <option value="Hennur">Hennur</option>
           <option value="KR Puram">KR Puram</option>
           <option value="Hebbal">Hebbal</option>
         </select>
+        <p> Please make sure you choose the right area of your home address! </p>
         <br />
        </div>
        <div class="flex flex-col bg-green-200 p-6 rounded-lg space-y-4">
@@ -46,10 +48,9 @@
          Present Location
        </button> as your home address
         <div class="text-lg"> OR</div>
-        <br>
         <div class="bg-green-500 text-white font-bold p-2 rounded text-center last:self-stretch">Custom Location</div>
         <div id="map" class="w-66 h-64"></div>
-        Please click on the marker after choosing your location!
+        <p id="msg1">Please click on the marker after choosing your location! </p>
         <br />
         <span id="locmsg"> Confirm your location? </span>
         <button
@@ -64,7 +65,9 @@
         >
           Reset
         </button>
+        <p id = "loc_msg"></p>
         </div>
+      
         <div class="flex flex-col bg-green-200 p-6 rounded-lg space-y-4 self-stretch">
         Are you a sharee or sharer? <br>
         <div class="flex items-center space-x-8">

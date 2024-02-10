@@ -19,6 +19,7 @@ var desp;
 var name;
 const map = new mappls.Map("map", {
   center: { lat: 13.027239970980778, lng: 77.63651315651865 },
+
 });
 const marker1 = new mappls.Marker({
   map: map,
@@ -26,6 +27,7 @@ const marker1 = new mappls.Marker({
   fitbounds: true,
   width: 35,
   height: 50,
+  fullscreenControl: false,
   popupHtml: "Your location ",
   position: { lat: 13.027239970980778, lng: 77.63651315651865 },
 });
@@ -73,6 +75,8 @@ sharer.addEventListener("click", () =>{
 //To get user's custom position
 marker1.addListener("click", function () {
   let pos1 = marker1.getPosition();
+  marker1.setIcon("https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-Download-PNG.png");
+ document.getElementById('msg1').innerText = 'Your location is saved!';
   glat = pos1.lat;
   glong = pos1.lng;
 });
@@ -143,6 +147,7 @@ async function submit() {
 //To confirm location of the user
 function loc() {
   marker1.setPosition({ lat: glat, lng: glong });
+  document.getElementById("loc_msg").innerText = "Your location is confirmed!";
 }
 
 //To reset user's location
@@ -151,6 +156,7 @@ function reset() {
   map.setCenter({ lat: 13.027239970980778, lng: 77.63651315651865 });
   marker1.setPosition({ lat: 13.027239970980778, lng: 77.63651315651865 });
   auth = false;
+  document.getElementById("locmsg").classList = ("text-red-600");
   document.getElementById("locmsg").innerText = "Choose your area again!";
 }
 
@@ -168,7 +174,9 @@ async function setdetails() {
       User_area: area,
       User_choice: choice,
       User_sharer: " ",
-      User_messager: []
+      User_messager: [],
+      User_otp: " ",
+      Otp_status: " "
     })
     .then((resolve) => {
       console.log(`Data added`);

@@ -288,6 +288,7 @@ document
     container.appendChild(l1);
     container.appendChild(map1);
     const map = new mappls.Map("map1", {
+        fullscreenControl: false,
         center: { lat: glat, lng: glong },
       });
 
@@ -303,6 +304,8 @@ document
 
       marker1.addListener("click", function () {
         let pos1 = marker1.getPosition();
+        l1.innerText = "Your location is now saved!";
+  marker1.setIcon("https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-Download-PNG.png");
         ulat = pos1.lat;
         ulong = pos1.lng;
       });
