@@ -36,16 +36,6 @@ window.onload = async function load() {
     .doc(area)
     .onSnapshot(
       (doc) => {
-        avail = 0;
-        avail2 = 0;
-        avail_users = [];
-        avail2_users = [];
-        var table = document.getElementById("users");
-        var rows = table.rows.length;
-        for (var i = 1; i < rows; i++) {
-          table.deleteRow(i);
-        }
-        document.getElementById("Wait").innerText = " ";
         ShareRide();
       },
       (err) => {
@@ -87,7 +77,7 @@ async function ShareRide() {
   //avaiable sharer check-1
   avail_users = [];
   avail2_users = [];
-  avail =0;
+  avail = 0;
   avail2 = 0;
   await sharer
     .get()
@@ -122,25 +112,32 @@ async function ShareRide() {
       avail2++;
     }
   }
- 
   avail_users = [];
-  avail2_users.forEach(element => {
+  avail2_users.forEach((element) => {
     if (!avail_users.includes(element)) {
-        avail_users.push(element);
+      avail_users.push(element);
     }
-});
-console.log(avail_users);
-for(i=0;i<avail_users.length;i++)
-{
-      let text1 = document.createTextNode(avail_users[i]);
-      let t1 = document.createElement("td");
-      t1.appendChild(text1);
-      t1.classList = "px-4 py-2 text-center items-center";
-      let tr = document.createElement("tr");
-      tr.appendChild(t1);
-      document.getElementById("users").appendChild(tr);
-    
-}
+  });
+  var table = document.getElementById("users");
+  var rows = table.rows.length;
+  try {
+    for (var i = 1; i <= rows; i++) {
+      table.deleteRow(i);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  document.getElementById("Wait").innerText = " ";
+
+  for (i = 0; i < avail_users.length; i++) {
+    let text1 = document.createTextNode(avail_users[i]);
+    let t1 = document.createElement("td");
+    t1.appendChild(text1);
+    t1.classList = "px-4 py-2 text-center items-center";
+    let tr = document.createElement("tr");
+    tr.appendChild(t1);
+    document.getElementById("users").appendChild(tr);
+  }
   if (avail2 == 0) {
     document.getElementById("Wait").innerText =
       "There are no online users in your area. Kindly refresh in a while.";

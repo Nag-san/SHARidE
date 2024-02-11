@@ -19,7 +19,6 @@ var desp;
 var name;
 const map = new mappls.Map("map", {
   center: { lat: 13.027239970980778, lng: 77.63651315651865 },
-
 });
 const marker1 = new mappls.Marker({
   map: map,
@@ -61,22 +60,22 @@ area.addEventListener("change", function () {
   }
 });
 
-
-sharee.addEventListener("click", () =>{
+sharee.addEventListener("click", () => {
   document.getElementById("dl").style.display = "none";
   document.getElementById("dl1").style.display = "none";
-})
+});
 
-sharer.addEventListener("click", () =>{
+sharer.addEventListener("click", () => {
   document.getElementById("dl").style.display = "inline";
   document.getElementById("dl1").style.display = "inline";
-
-})
+});
 //To get user's custom position
 marker1.addListener("click", function () {
   let pos1 = marker1.getPosition();
-  marker1.setIcon("https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-Download-PNG.png");
- document.getElementById('msg1').innerText = 'Your location is saved!';
+  marker1.setIcon(
+    "https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-Download-PNG.png"
+  );
+  document.getElementById("msg1").innerText = "Your location is saved!";
   glat = pos1.lat;
   glong = pos1.lng;
 });
@@ -88,7 +87,6 @@ function ploc() {
     glong = position.coords.longitude;
     marker1.setPosition({ lat: glat, lng: glong });
     map.setCenter({ lat: glat, lng: glong });
-
   };
 
   const errorCallback = (error) => {
@@ -106,13 +104,10 @@ async function submit() {
   auth = true;
   let name = document.getElementById("name").value;
   let desp = document.getElementById("description").value;
-  if(name.length===0)
-  {
-  document.getElementById("error").innerText = "Please enter your name!";
-  auth = false;
-  }
-  else if(desp.length===0)
-  {
+  if (name.length === 0) {
+    document.getElementById("error").innerText = "Please enter your name!";
+    auth = false;
+  } else if (desp.length === 0) {
     document.getElementById("error").innerText = "You need to give a bio!";
     auth = false;
   }
@@ -156,7 +151,7 @@ function reset() {
   map.setCenter({ lat: 13.027239970980778, lng: 77.63651315651865 });
   marker1.setPosition({ lat: 13.027239970980778, lng: 77.63651315651865 });
   auth = false;
-  document.getElementById("locmsg").classList = ("text-red-600");
+  document.getElementById("locmsg").classList = "text-red-600";
   document.getElementById("locmsg").innerText = "Choose your area again!";
 }
 
@@ -166,7 +161,7 @@ async function setdetails() {
     .doc(user_id)
     .set({
       User_pwd: pwd,
-      User_to: 2,  //going no where
+      User_to: 2, //going no where
       User_pts: 0,
       User_rides: 0,
       User_lat: glat,
@@ -176,7 +171,7 @@ async function setdetails() {
       User_sharer: " ",
       User_messager: [],
       User_otp: " ",
-      Otp_status: " "
+      Otp_status: " ",
     })
     .then((resolve) => {
       console.log(`Data added`);
@@ -184,14 +179,14 @@ async function setdetails() {
     .catch((err) => {
       console.log(err);
     });
-    var desp = document.getElementById("description").value;
-    var name = document.getElementById("name").value;
-    await review_col.doc(user_id).set({
-      description: desp,
-      rating: 0,
-      reviews: [],
-      name: name
-    });
+  var desp = document.getElementById("description").value;
+  var name = document.getElementById("name").value;
+  await review_col.doc(user_id).set({
+    description: desp,
+    rating: 0,
+    reviews: [],
+    name: name,
+  });
 
   //Writing data in either Sharee or Sharer
   if (choice == "sharee") {
@@ -228,17 +223,14 @@ async function setdetails() {
   window.location.href = "Terms.html";
 }
 
-function next()
-{
-  if(document.getElementById("terms").checked == true)
-  {
+function next() {
+  if (document.getElementById("terms").checked == true) {
     window.location.href = "Pledge.html";
-  }
-  else
-  document.getElementById("err").innerText = "Please agree to our terms and conditions!";
+  } else
+    document.getElementById("err").innerText =
+      "Please agree to our terms and conditions!";
 }
 
-function pledge()
-{
+function pledge() {
   window.location.href = "../index.html";
 }

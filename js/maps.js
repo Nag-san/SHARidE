@@ -15,7 +15,7 @@ var tlng;
 var url;
 var area;
 
-window.onload = async function hello(){
+window.onload = async function hello() {
   var i = 0;
   var url = document.location.href;
   for (i = 0; i < url.length; i++) {
@@ -28,10 +28,9 @@ window.onload = async function hello(){
   const unsub = await user_col.doc(to_user).onSnapshot((doc) => {
     num = doc.data().User_otp;
     load();
-})
-if (document.getElementById('otp_disp').value != ' ')
-unsub();
-}
+  });
+  if (document.getElementById("otp_disp").value != " ") unsub();
+};
 
 async function load() {
   document.getElementById("give_review").style.display = "none";
@@ -58,12 +57,16 @@ async function load() {
     .catch((err) => {
       console.log(err);
     });
+    users1.push(to_user);
+
   if (choice == "sharee") {
     document.getElementById("enter").style.display = "inline";
     document.getElementById("disp").style.display = "none";
     await msg_col.doc(`${to_user}${curr_user}`).set({
-      [curr_user]: " ",
-      [to_user]: " ",
+      [curr_user]: [],
+      [to_user]: [],
+      [`${curr_user}_clear`]: [0,0],
+      [`${to_user}_clear`]: [0,0]
     });
 
     const num = Math.floor(10000 + Math.random() * 90000);
@@ -81,23 +84,23 @@ async function load() {
       }
     });
   }
-
-  for (var i = 0; i < users1.length; i++) {
-    if (users1[i] == to_user) break;
-  }
-  if (i == users1.length) {
+  var users2 = []
+  users1.forEach((element) => {
+    if (!users2.includes(element)) {
+      users2.push(element);
+    }
+  });
     await user_col
       .doc(curr_user)
-      .set(
+      .update(
         {
-          User_messager: [to_user],
-        },
-        { merge: true }
+          User_messager: users2,
+        }
       )
       .catch((err) => {
         console.log(err);
       });
-  }
+
 
   await user_col
     .doc(to_user)
@@ -150,7 +153,6 @@ function getd() {
     "/?entry=ttu";
   window.parent.postMessage(url, "*");
 }
-
 
 async function succ_ride() {
   var otp;

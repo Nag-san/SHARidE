@@ -35,17 +35,13 @@ window.onload = async function load() {
     .doc(area)
     .onSnapshot(
       (doc) => {
-        var table = document.getElementById("Avail_users");
-        var rowCount = table.rows.length;
-        for (var i = 1; i < rowCount; i++) {
-          table.deleteRow(i);
-        }
         hi();
       },
       (err) => {
         console.log(`Encountered error:`, err);
       }
-    )};
+    );
+};
 
 function get_userid(url) {
   var i = 0;
@@ -58,7 +54,7 @@ function get_userid(url) {
 }
 
 async function hi() {
-  document.getElementById("Wait").innerText =
+  document.getElementById("Wait").innerText = " ";
   user_id = get_userid(window.location.href);
   //getting user's area
   var user_ref = db.collection("User_details").doc(user_id);
@@ -91,9 +87,10 @@ async function hi() {
 
   //available sharee check-1
   avail_users = [];
-  avail2_users = []; 
+  avail2_users = [];
   avail = 0;
-  avail2 =0;
+  avail2 = 0;
+
   await sharee
     .get()
     .then((doc) => {
@@ -122,24 +119,41 @@ async function hi() {
       .catch((err) => {
         console.log(err);
       });
+
     if (to == userto) {
       avail2_users[avail2] = avail_users[i];
       avail2++;
     }
   }
+
   avail_users = [];
-  avail2_users.forEach(element => {
+  avail2_users.forEach((element) => {
     if (!avail_users.includes(element)) {
-        avail_users.push(element);
+      avail_users.push(element);
     }
-});
-  if (avail2 == 0) {
+  });
+
+  var table = document.getElementById("Availusers");
+  var rowCount = table.rows.length;
+  try {
+    for (i = 1; i <= rowCount; i++) {
+      table.deleteRow(i);
+      console.log("deleted row", i);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  document.getElementById("Wait").innerText = " ";
+  console.log(avail_users, avail2_users);
+  if (avail2 == 0 && avail_users[0] == undefined) {
     document.getElementById("Wait").innerText =
       "There are no users currently available!";
   } else {
     //fetch location of available users
     var ulat, ulng;
-    for (i = 0; i < avail_users.length; i++) {
+    var len = avail_users.length;
+    console.log(len);
+    for (i = 0; i < len; i++) {
       await user_col
         .doc(avail_users[i])
         .get()
@@ -151,6 +165,7 @@ async function hi() {
         })
         .catch((err) => {
           console.log(err);
+          return;
         });
 
       //calculating distance and duration using mappls API
@@ -208,7 +223,7 @@ async function hi() {
       tr.appendChild(t2);
       tr.appendChild(t3);
       tr.appendChild(t4);
-      document.getElementById("Avail_users").appendChild(tr);
+      document.getElementById("Availusers").appendChild(tr);
     }
   }
 }
@@ -249,4 +264,3 @@ async function CancelRide() {
   });
   window.parent.postMessage("user_homepage.html", "*");
 }
-

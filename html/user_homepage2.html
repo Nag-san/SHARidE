@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-</head>
-<body class="min-h-screen flex flex-col justify-between bg-green-400">
-      <div class="flex-grow flex flex-col justify-center p-5 rounded-lg bg-green-300 space-y-3 m-8">
-            <label> From: </label>
-            <select
-              id="from"
-              class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
-            >
-              <option value="Home" selected>Home</option>
-              <option value="College">College</option>
-            </select>
-            <br />
-            <label for="to"> To: </label>
-            <select name="to" id="to" disabled class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300">
-              <option value="Home">Home</option>
-              <option value="College" selected>College</option>
-            </select>
-            <br />
-            <br />
-            <button
-              id="ShareRide"
-              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Share Ride
-            </button>
-            <br />
-            <button
-              id="Previous1"
-              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Previous
-            </button>
-        </div>
-      <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
-      <script src="../js/firebaseconfig.js"></script>
-      <script type="module" src="../js/user_homepage2.js"></script>
-</body>
+  </head>
+  <body class="min-h-screen flex flex-col justify-between bg-green-400">
+    <div
+      class="flex-grow flex flex-col justify-center p-5 rounded-lg bg-green-300 space-y-3 m-8"
+    >
+      <label> From: </label>
+      <select
+        id="from"
+        class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
+      >
+        <option value="Home" selected>Home</option>
+        <option value="College">College</option>
+      </select>
+      <br />
+      <label for="to"> To: </label>
+      <select
+        name="to"
+        id="to"
+        disabled
+        class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
+      >
+        <option value="Home">Home</option>
+        <option value="College" selected>College</option>
+      </select>
+      <br />
+      <br />
+      <button
+        id="ShareRide"
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Share Ride
+      </button>
+      <br />
+      <button
+        id="Previous1"
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Previous
+      </button>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <script src="../js/firebaseconfig.js"></script>
+    <script type="module" src="../js/user_homepage2.js"></script>
+  </body>
 </html>

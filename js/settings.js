@@ -78,17 +78,21 @@ document
     t4.value = pwd;
 
     btn.innerText = "Update";
- 
-    t1.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
+
+    t1.classList =
+      "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500";
     container.appendChild(l1);
     container.appendChild(t1);
-    t2.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
+    t2.classList =
+      "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500";
     container.appendChild(l2);
     container.appendChild(t2);
-    t3.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
+    t3.classList =
+      "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500";
     container.appendChild(l3);
     container.appendChild(t3);
-    t4.classList = ('mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500');
+    t4.classList =
+      "mt-1 p-2 border rounded-md focus:outline-none focus:border-red-500";
     container.appendChild(l4);
     container.appendChild(t4);
 
@@ -114,9 +118,9 @@ document
       document.getElementById("err").innerText = "Updated successfully!";
     });
 
-    btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
+    btn.classList =
+      "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5";
     container.appendChild(btn);
-
   });
 
 document
@@ -138,10 +142,10 @@ document
     l1.innerHTML = "Sharee: ";
     var l2 = document.createElement("Label");
     l2.innerHTML = "Sharer: ";
-    var l3 = document.createElement('Label');
-    l3.innerHTML = "Choose your role: "
-    var d1 = document.createElement('div');
-    var d2 = document.createElement('div');
+    var l3 = document.createElement("Label");
+    l3.innerHTML = "Choose your role: ";
+    var d1 = document.createElement("div");
+    var d2 = document.createElement("div");
 
     r1.setAttribute("name", "choice");
     r2.setAttribute("name", "choice");
@@ -167,8 +171,9 @@ document
     } else {
       r2.checked = true;
     }
-    d1.classList = ("flex flex-col bg-green-200 p-6 rounded-lg space-y-4 self-stretch");
-    d2.classList = ("flex items-center space-x-8");
+    d1.classList =
+      "flex flex-col bg-green-200 p-6 rounded-lg space-y-4 self-stretch";
+    d2.classList = "flex items-center space-x-8";
     container.appendChild(d1);
     d1.appendChild(l3);
     d1.appendChild(d2);
@@ -220,12 +225,12 @@ document
       }
       document.getElementById("err").innerText = "Updated successfully!";
     });
-    btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
+    btn.classList =
+      "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5";
     container.appendChild(btn);
   });
 
-
-  document
+document
   .getElementById("Location_update")
   .addEventListener("click", async function () {
     document.getElementById("err").innerText = " ";
@@ -242,133 +247,134 @@ document
     var user_area;
     var user_choice;
     var user_id = get_userid(window.location.href);
-    await user_col.doc(user_id).get()
-    .then((doc)=>{
+    await user_col
+      .doc(user_id)
+      .get()
+      .then((doc) => {
         console.log(doc.data().User_lat);
         user_area = doc.data().User_area;
         user_choice = doc.data().User_choice;
-        glat = doc.data().User_lat,
-        glong = doc.data().User_log
+        (glat = doc.data().User_lat), (glong = doc.data().User_log);
+      });
+
+    var areas = ["Kalyan Nagar", "KR Puram", "Hennur", "Hebbal"];
+
+    let s = document.createElement("select");
+    s.setAttribute("id", "select1");
+    for (var i = 0; i < 4; i++) {
+      var option = document.createElement("option");
+      option.text = areas[i];
+      option.value = areas[i];
+      s.appendChild(option);
+    }
+    s.classList = "rounded-md w-52 p-1 border border-gray-300";
+    container.appendChild(s);
+
+    s.value = user_area;
+    document.getElementById("select1").addEventListener("change", function () {
+      var area1 = s.value;
+      if (area1 == "Hennur") {
+        map.setCenter({ lat: 13.038167023942243, lng: 77.6434407896191 });
+        marker1.setPosition({ lat: 13.038167023942243, lng: 77.6434407896191 });
+      } else if (area1 == "KR Puram") {
+        map.setCenter({ lat: 13.017553963882222, lng: 77.70440617135745 });
+        marker1.setPosition({
+          lat: 13.017553963882222,
+          lng: 77.70440617135745,
+        });
+      } else if (area1 == "Hebbal") {
+        map.setCenter({ lat: 13.035802644453957, lng: 77.5977116982567 });
+        marker1.setPosition({ lat: 13.035802644453957, lng: 77.5977116982567 });
+      } else {
+        map.setCenter({ lat: 13.027239970980778, lng: 77.63651315651865 });
+        marker1.setPosition({
+          lat: 13.027239970980778,
+          lng: 77.63651315651865,
+        });
+      }
     });
 
-    var areas = ['Kalyan Nagar', 'KR Puram', 'Hennur', 'Hebbal'];
-
-    let s = document.createElement('select');
-    s.setAttribute('id','select1'); 
-    for(var i=0;i<4;i++)
-    {
-        var option = document.createElement('option');
-        option.text = areas[i];
-        option.value = areas[i];
-        s.appendChild(option);
-    }
-    s.classList = ("rounded-md w-52 p-1 border border-gray-300");
-    container.appendChild(s);
-    
-    s.value = user_area;
-    document.getElementById('select1').addEventListener('change', function(){
-      var area1 = s.value;
-  if (area1 == "Hennur") {
-    map.setCenter({ lat: 13.038167023942243, lng: 77.6434407896191 });
-    marker1.setPosition({ lat: 13.038167023942243, lng: 77.6434407896191 });
-  } else if (area1 == "KR Puram") {
-    map.setCenter({ lat: 13.017553963882222, lng: 77.70440617135745 });
-    marker1.setPosition({ lat: 13.017553963882222, lng: 77.70440617135745 });
-  } else if (area1 == "Hebbal") {
-    map.setCenter({ lat: 13.035802644453957, lng: 77.5977116982567 });
-    marker1.setPosition({ lat: 13.035802644453957, lng: 77.5977116982567 });
-  } else {
-    map.setCenter({ lat: 13.027239970980778, lng: 77.63651315651865 });
-    marker1.setPosition({ lat: 13.027239970980778, lng: 77.63651315651865 });
-  }
-    })
-
-    let map1 = document.createElement('map');
-    let l1 = document.createElement('Label');
-    l1.innerText = "Choose location by dragging the marker and then click on it, once chosen!";
-    map1.setAttribute('width','240px');
-    map1.setAttribute('height','240px');
-    map1.setAttribute('id','map1');
+    let map1 = document.createElement("map");
+    let l1 = document.createElement("Label");
+    l1.innerText =
+      "Choose location by dragging the marker and then click on it, once chosen!";
+    map1.setAttribute("width", "240px");
+    map1.setAttribute("height", "240px");
+    map1.setAttribute("id", "map1");
     container.appendChild(l1);
     container.appendChild(map1);
     const map = new mappls.Map("map1", {
-        fullscreenControl: false,
-        center: { lat: glat, lng: glong },
-      });
+      fullscreenControl: false,
+      center: { lat: glat, lng: glong },
+    });
 
     const marker1 = new mappls.Marker({
-        map: map,
-        draggable: true,
-        fitbounds: true,
-        width: 35,
-        height: 50,
-        popupHtml: "Your location ",
-        position: { lat: glat, lng: glong },
-      });
+      map: map,
+      draggable: true,
+      fitbounds: true,
+      width: 35,
+      height: 50,
+      popupHtml: "Your location ",
+      position: { lat: glat, lng: glong },
+    });
 
-      marker1.addListener("click", function () {
-        let pos1 = marker1.getPosition();
-        l1.innerText = "Your location is now saved!";
-  marker1.setIcon("https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-Download-PNG.png");
-        ulat = pos1.lat;
-        ulong = pos1.lng;
-      });
-      
-      var btn = document.createElement("button");
-      btn.innerText = "Update";
+    marker1.addListener("click", function () {
+      let pos1 = marker1.getPosition();
+      l1.innerText = "Your location is now saved!";
+      marker1.setIcon(
+        "https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-Free-Download-PNG.png"
+      );
+      ulat = pos1.lat;
+      ulong = pos1.lng;
+    });
 
-      btn.addEventListener('click', async function (){
-        var area = document.getElementById('select1').value;
+    var btn = document.createElement("button");
+    btn.innerText = "Update";
 
-        if(user_area!=area)
-        {
-            console.log(user_area, area);            
-            await user_col.doc(user_id).update({
-                User_area: area,
-                User_lat: ulat,
-                User_log: ulong
-            });
+    btn.addEventListener("click", async function () {
+      var area = document.getElementById("select1").value;
 
-            if(user_choice=='sharee')
-            {
-              
-                await sharee_col.doc(user_area).update({
-                    Users: firebase.firestore.FieldValue.arrayRemove({
-                      userid: user_id,
-                      status: false,
-                    }),
-                  });
+      if (user_area != area) {
+        console.log(user_area, area);
+        await user_col.doc(user_id).update({
+          User_area: area,
+          User_lat: ulat,
+          User_log: ulong,
+        });
 
-                  await sharee_col.doc(area).update({
-                    Users: firebase.firestore.FieldValue.arrayUnion({
-                      userid: user_id,
-                      status: false,
-                    }),
-                  });
-            }
-            else{
+        if (user_choice == "sharee") {
+          await sharee_col.doc(user_area).update({
+            Users: firebase.firestore.FieldValue.arrayRemove({
+              userid: user_id,
+              status: false,
+            }),
+          });
 
-                await sharer_col.doc(user_area).update({
-                    Users: firebase.firestore.FieldValue.arrayRemove({
-                      userid: user_id,
-                      status: false,
-                    }),
-                  });
+          await sharee_col.doc(area).update({
+            Users: firebase.firestore.FieldValue.arrayUnion({
+              userid: user_id,
+              status: false,
+            }),
+          });
+        } else {
+          await sharer_col.doc(user_area).update({
+            Users: firebase.firestore.FieldValue.arrayRemove({
+              userid: user_id,
+              status: false,
+            }),
+          });
 
-                  await sharer_col.doc(area).update({
-                    Users: firebase.firestore.FieldValue.arrayUnion({
-                      userid: user_id,
-                      status: false,
-                    }),
-                  });
-
-            }
+          await sharer_col.doc(area).update({
+            Users: firebase.firestore.FieldValue.arrayUnion({
+              userid: user_id,
+              status: false,
+            }),
+          });
         }
-        document.getElementById('err').innerText = "Updated Successfully!";
-        
-      });
-    btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
+      }
+      document.getElementById("err").innerText = "Updated Successfully!";
+    });
+    btn.classList =
+      "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5";
     container.appendChild(btn);
-  
   });
-
