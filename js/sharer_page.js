@@ -1,5 +1,4 @@
 //Declaring all collections
-
 const db = firebase.firestore();
 const sharee_col = db.collection("Sharee");
 const user_col = db.collection("User_details");
@@ -21,15 +20,46 @@ var sharer;
 var dist;
 var time;
 
-async function hi() {
+window.onload = async function load() {
+  var area;
+  user_id = get_userid(window.location.href);
+  document.getElementById("Wait").innerText = " ";
+  await user_col
+    .doc(user_id)
+    .get()
+    .then((doc) => {
+      area = doc.data().User_area;
+    });
+
+  db.collection("Sharee")
+    .doc(area)
+    .onSnapshot(
+      (doc) => {
+        var table = document.getElementById("Avail_users");
+        var rowCount = table.rows.length;
+        for (var i = 1; i < rowCount; i++) {
+          table.deleteRow(i);
+        }
+        hi();
+      },
+      (err) => {
+        console.log(`Encountered error:`, err);
+      }
+    )};
+
+function get_userid(url) {
   var i = 0;
   var url = document.location.href;
-  localStorage.setItem("curr_page",url);
   for (i; i <= url.length; i++) {
     if (url[i] == "?") break;
   }
   user_id = url.substring(i + 1);
+  return user_id;
+}
 
+async function hi() {
+  document.getElementById("Wait").innerText =
+  user_id = get_userid(window.location.href);
   //getting user's area
   var user_ref = db.collection("User_details").doc(user_id);
   await user_ref.get().then((doc) => {
@@ -60,6 +90,10 @@ async function hi() {
   });
 
   //available sharee check-1
+  avail_users = [];
+  avail2_users = []; 
+  avail = 0;
+  avail2 =0;
   await sharee
     .get()
     .then((doc) => {
@@ -93,21 +127,27 @@ async function hi() {
       avail2++;
     }
   }
+  avail_users = [];
+  avail2_users.forEach(element => {
+    if (!avail_users.includes(element)) {
+        avail_users.push(element);
+    }
+});
   if (avail2 == 0) {
     document.getElementById("Wait").innerText =
       "There are no users currently available!";
   } else {
     //fetch location of available users
     var ulat, ulng;
-    for (i = 0; i < avail2; i++) {
+    for (i = 0; i < avail_users.length; i++) {
       await user_col
-        .doc(avail2_users[i])
+        .doc(avail_users[i])
         .get()
         .then((doc) => {
           if (doc.exists) {
             ulat = doc.data().User_lat;
             ulng = doc.data().User_log;
-          } else console.log("No user available");
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -131,8 +171,8 @@ async function hi() {
 
       //creating table
       let tr = document.createElement("tr");
-      var us = avail2_users[i];
-      let text1 = document.createTextNode(avail2_users[i]);
+      var us = avail_users[i];
+      let text1 = document.createTextNode(avail_users[i]);
       let text2 = document.createTextNode(`${dist.toFixed(2)} km`);
       let text3 = document.createTextNode(`${time.toFixed(2)} mins`);
       let btn = document.createElement("button");
@@ -148,17 +188,18 @@ async function hi() {
           .catch((err) => {
             console.log(err);
           });
-        window.location.href = "maps.html?" + us + user_id;
+        window.parent.postMessage(`maps.html?${us}${user_id}`);
       });
       let t1 = document.createElement("td");
       let t2 = document.createElement("td");
       let t3 = document.createElement("td");
       let t4 = document.createElement("td");
-      t1.classList = ("px-4 py-2");
-      t2.classList = ("px-4 py-2 text-center items-center");
-      t3.classList = ("px-4 py-2 text-center items-center");
-      t4.classList = ("px-4 py-2 text-center items-center");
-      btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded");
+      t1.classList = "px-4 py-2 text-center items-center";
+      t2.classList = "px-4 py-2 text-center items-center";
+      t3.classList = "px-4 py-2 text-center items-center";
+      t4.classList = "px-4 py-2 text-center items-center";
+      btn.classList =
+        "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded";
       t1.appendChild(text1);
       t2.appendChild(text2);
       t3.appendChild(text3);
@@ -206,21 +247,6 @@ async function CancelRide() {
       status: false,
     }),
   });
-  avail = 0;
-  avail_users = [10];
-  avail2 = 0;
-  avail2_users = [10];
-  window.location.href = "user_homepage.html?" + user_id;
+  window.parent.postMessage("user_homepage.html", "*");
 }
 
-function refresh() {
-  avail = 0;
-  avail2 = 0;
-  var table = document.getElementById("Avail_users");
-  var rowCount = table.rows.length;
-  for (var i = 1; i < rowCount; i++) {
-    table.deleteRow(i);
-  }
-  document.getElementById("Wait").innerText = " ";
-  hi();
-}

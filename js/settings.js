@@ -21,6 +21,7 @@ logout.addEventListener("click", function logout() {
 document
   .getElementById("Personal_update")
   .addEventListener("click", async function () {
+    document.getElementById("err").innerText = " ";
     document.getElementById("Personal_update").disabled = true;
     document.getElementById("Choice_update").disabled = false;
     document.getElementById("Location_update").disabled = false;
@@ -115,11 +116,13 @@ document
 
     btn.classList = ("bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5");
     container.appendChild(btn);
+
   });
 
 document
   .getElementById("Choice_update")
   .addEventListener("click", async function () {
+    document.getElementById("err").innerText = " ";
     document.getElementById("Choice_update").disabled = true;
     document.getElementById("Personal_update").disabled = false;
     document.getElementById("Location_update").disabled = false;
@@ -225,6 +228,7 @@ document
   document
   .getElementById("Location_update")
   .addEventListener("click", async function () {
+    document.getElementById("err").innerText = " ";
     document.getElementById("Choice_update").disabled = false;
     document.getElementById("Personal_update").disabled = false;
     document.getElementById("Location_update").disabled = true;

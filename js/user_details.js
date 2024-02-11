@@ -240,5 +240,5 @@ function next()
 
 function pledge()
 {
-  window.location.href = "index.html";
+  window.location.href = "../index.html";
 }

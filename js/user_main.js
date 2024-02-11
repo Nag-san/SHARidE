@@ -66,7 +66,7 @@ window.addEventListener('message', function (event) {
   let url = event.data;
   if(url===`user_homepage2.html`)
   {
-  url = `${event.data}?${window.name}`;
+    url = `${event.data}?${window.name}`;
     document.getElementById('iframee').setAttribute('src', url);
     global = url;
   }
@@ -90,7 +90,7 @@ window.addEventListener('message', function (event) {
   }
   else if(url==='exitIframe')
   {
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
   }
   else if(url[1]==='t')
   {
@@ -99,7 +99,6 @@ window.addEventListener('message', function (event) {
   }
   else if(url[0]==='m')
   {
-    url = `${event.data}${window.name}`;
     document.getElementById('iframee').setAttribute('src', url);
     global=url;
   }

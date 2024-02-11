@@ -35,7 +35,7 @@ document.getElementById('submit').addEventListener('click', async function login
       if (pwd == data) {
         localStorage.setItem("user", rollno);
         localStorage.setItem("pwd", pwd);
-        window.location.href = "user_main.html?"+rollno;
+        window.location.href = "html/user_main.html?"+rollno;
       } else {
         document.getElementById("msg").innerText = "Ooops, your password is wrong";
       }
