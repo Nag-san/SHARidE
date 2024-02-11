@@ -58,16 +58,23 @@ async function load() {
       console.log(err);
     });
     users1.push(to_user);
-
+    var exist = false;
   if (choice == "sharee") {
     document.getElementById("enter").style.display = "inline";
     document.getElementById("disp").style.display = "none";
-    await msg_col.doc(`${to_user}${curr_user}`).set({
+    await msg_col.doc(`${to_user}${curr_user}`).get()
+    .then((doc)=>{
+      if(doc.exists)
+      exist = true;})
+
+      if(exist == true)
+      {await msg_col.doc(`${to_user}${curr_user}`).set({
       [curr_user]: [],
       [to_user]: [],
       [`${curr_user}_clear`]: [0,0],
       [`${to_user}_clear`]: [0,0]
-    });
+    })
+  };
 
     const num = Math.floor(10000 + Math.random() * 90000);
     await user_col.doc(curr_user).update({

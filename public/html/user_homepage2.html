@@ -9,14 +9,15 @@
       rel="stylesheet"
     />
   </head>
-  <body class="min-h-screen flex flex-col justify-between bg-green-400">
+  <body class="min-h-screen flex flex-col justify-center bg-slate-300">
     <div
-      class="flex-grow flex flex-col justify-center p-5 rounded-lg bg-green-300 space-y-3 m-8"
+      class="flex-grow flex flex-col shadow-lg justify-center p-8 rounded-lg bg-green-300 space-y-3 m-10" style="height:90vh"
     >
+    <div class="flex flex-col p-9">
       <label> From: </label>
       <select
         id="from"
-        class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
+        class="px-5 py-2 mt-3 text-md rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
       >
         <option value="Home" selected>Home</option>
         <option value="College">College</option>
@@ -27,7 +28,7 @@
         name="to"
         id="to"
         disabled
-        class="block w-full px-4 py-2 rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
+        class="px-5 py-2 mt-3 text-md rounded-md bg-gray-100 border border-gray-300 focus:outline-none focus:border-green-300"
       >
         <option value="Home">Home</option>
         <option value="College" selected>College</option>
@@ -36,17 +37,18 @@
       <br />
       <button
         id="ShareRide"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        class="bg-green-500 hover:bg-green-700 text-white text-lg font-bold py-2 px-8 rounded"
       >
         Share Ride
       </button>
       <br />
       <button
         id="Previous1"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        class="bg-green-500 hover:bg-green-700 text-white text-lg font-bold py-2 px-4 rounded"
       >
         Previous
       </button>
+      </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>

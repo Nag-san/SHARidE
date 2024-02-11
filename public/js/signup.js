@@ -9,9 +9,9 @@ window.onload = (event) => {
     document.getElementById("rollno").value = user;
     document.getElementById("pwd").value = pwd;
     document.getElementById("rollno").classList =
-      "mt-1 p-2 border rounded-md focus:outline-none bg-gray-200 focus:border-red-500";
+      "mt-1 p-2 border rounded-md focus:outline-none bg-gray-100 focus:border-red-500";
     document.getElementById("pwd").classList =
-      "mt-1 p-2 border rounded-md focus:outline-none bg-gray-200 focus:border-red-500";
+      "mt-1 p-2 border rounded-md focus:outline-none bg-gray-100 focus:border-red-500";
   } catch (err) {
     console.log(err);
   }

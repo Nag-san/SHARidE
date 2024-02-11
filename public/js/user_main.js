@@ -27,13 +27,30 @@ window.onload = (event) => {
   hello();
 };
 
+function reset_color() {
+  document.getElementById("homepage").classList =
+    "flex-grow flex justify-center bg-white text-green-500 px-4 py-2 rounded-full mx-1";
+  document.getElementById("messaging").classList =
+    "flex-grow flex justify-center bg-white text-green-500 px-4 py-2 rounded-full mx-1";
+  document.getElementById("community").classList =
+    "flex-grow flex justify-center bg-white text-green-500 px-4 py-2 rounded-full mx-1";
+  document.getElementById("settings").classList =
+    "flex-grow flex justify-center bg-white text-green-500 px-4 py-2 rounded-full mx-1";
+}
+
 document.getElementById("homepage").addEventListener("click", function () {
   let val = this.value;
+  reset_color();
+  this.classList =
+    "flex-grow flex justify-center bg-white text-black px-4 py-2 rounded-full mx-1";
   window.postMessage("l", "*");
   document.getElementById("welcome").style.display = "none";
 });
 document.getElementById("messaging").addEventListener("click", function () {
   let val = this.value;
+  reset_color();
+  this.classList =
+    "flex-grow flex justify-center bg-white text-black px-4 py-2 rounded-full mx-1";
   document
     .getElementById("iframee")
     .setAttribute("src", `messaging.html?${val}`);
@@ -41,6 +58,9 @@ document.getElementById("messaging").addEventListener("click", function () {
 });
 document.getElementById("community").addEventListener("click", function () {
   let val = this.value;
+  reset_color();
+  this.classList =
+    "flex-grow flex justify-center bg-white text-black px-4 py-2 rounded-full mx-1";
   document
     .getElementById("iframee")
     .setAttribute("src", `community.html?${val}`);
@@ -48,6 +68,9 @@ document.getElementById("community").addEventListener("click", function () {
 });
 document.getElementById("settings").addEventListener("click", function () {
   let val = this.value;
+  reset_color();
+  this.classList =
+    "flex-grow flex justify-center bg-white text-black px-4 py-2 rounded-full mx-1";
   document
     .getElementById("iframee")
     .setAttribute("src", `user_settings.html?${val}`);

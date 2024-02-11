@@ -9,10 +9,10 @@
   />
     <title>Document</title>
   </head>
-  <body onload = "hi()" class="min-h-screen flex flex-col justify-between bg-green-400">
-    <div class="flex flex-col justify-center space-y-8 p-4 m-8 rounded-lg bg-green-300">
-      <p class="font-semibold"> Online users</p>
-        <table id="Availusers" class="min-w-full divide-y p-4 divide-gray-200 rounded-lg bg-green-200">  
+  <body onload = "hi()" class="min-h-screen flex flex-col justify-between bg-slate-300">
+    <div class="flex flex-col justify-center space-y-8 p-4 m-8 rounded-lg bg-green-300 overflow-auto shadow-lg" style="height:90vh">
+      <p class="font-semibold text-lg ml-3"> Online users</p>
+        <table id="Availusers" class="min-w-full divide-y p-4 divide-gray-400 rounded-lg bg-green-200">  
           <tr> 
                 <th class = "px-2 py-3 text-center text-xs font-medium text-black uppercase tracking-wider"> User ID  </th>
                 <th class = "px-2 py-3 text-center text-xs font-medium text-black uppercase tracking-wider"> Distance </th>
@@ -22,13 +22,13 @@
         </table> <br/>
         <span id="Wait" class="text-lg text-red-600 rounded-lg p-4">  </span> <br /><br />
         <div class="flex flex-row justify-center">
-        <button id="Refresh" onclick="refresh()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> <p class="flex items-center">Refresh <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-4">
+        <button id="Refresh" onclick="refresh()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> <p class="flex items-center justify-center" style="width:140px;height:50px">Refresh <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-4">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
         </svg> </button> <br> 
         </p>
         </div>
         <div class="flex flex-row justify-center">
-        <button id="CancelRide" onclick="CancelRide()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><p class="flex items-center">Cancel Ride <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-4">
+        <button id="CancelRide" onclick="CancelRide()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><p class="flex items-center justify-center" style="width:140px;height:50px">Cancel Ride <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-4">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
         </svg></button> <br>
         </p>
