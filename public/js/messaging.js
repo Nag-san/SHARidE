@@ -4,6 +4,7 @@ const sharee_col = db.collection("Sharee");
 const user_col = db.collection("User_details");
 const sharer_col = db.collection("Sharer");
 const msg_col = db.collection("Messaging");
+const user_rev = db.collection("User_reviews");
 var curr_user;
 var to_user;
 
@@ -75,6 +76,12 @@ async function loadmsg(string) {
       (mesgs = doc.data()[curr_user]), (inn = doc.data()[to_user]);
     });
   }
+var name;
+await user_rev.doc(to_user).get()
+.then((doc)=>{
+  name = doc.data().name;
+})
+document.getElementById("name").innerText = name;
 
   var b = await msg_ref.get();
   var curr_clear = b.data()[`${curr_user}_clear`];
@@ -91,7 +98,10 @@ async function loadmsg(string) {
       a++;
       let msg1 = document.createElement("td");
       msg1.appendChild(text1);
-      if (style == "right") msg1.style.textAlign = "right";
+      if (style == "right") {
+      msg1.classList = "bg-white text-md p-2 rounded";
+      msg1.style.textAlign = "right";
+      }
       tr.appendChild(msg1);
       document.getElementById("messages").appendChild(tr);
     } else {
@@ -100,7 +110,8 @@ async function loadmsg(string) {
       let text2 = document.createTextNode(inn[i]);
       let msg2 = document.createElement("td");
       msg2.appendChild(text2);
-      if (style == " ") msg2.style.textAlign = "right";
+      if (style == " ") 
+      msg2.classList = "bg-red-400 p-1 text-md rounded";
       tr.appendChild(msg2);
       document.getElementById("messages").appendChild(tr);
     }

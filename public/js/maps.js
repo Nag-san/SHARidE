@@ -290,6 +290,8 @@ async function rev_submit() {
   let rating = document.getElementById("rating").value;
   let review1 = document.getElementById("review").value;
 
+  console.log(rating,review1);
+  
   await review_col
     .doc(to_user)
     .get()
@@ -309,5 +311,8 @@ async function rev_submit() {
       console.log(err);
     });
 
-  window.postMessage("user_homepage.html", "*");
 }
+
+document.getElementById('fin_ride').addEventListener('click', function(){
+  window.postMessage("user_homepage.html", "*");
+})

@@ -10,23 +10,29 @@
   />
   <link href="https://cdn.jsdelivr.net/npm/heroicons@4.0.0/solid.css" rel="stylesheet">
 </head>
-<body class = "min-h-screen min-w-screen flex m-1 justify-between bg-green-400">
+<body class = "min-h-screen flex flex-row bg-slate-300">
     <div class="flex flex-col p-3">
-    <table id = "users"> </table>
+    <table class="flex flex-col mt-4 space-y-3" id = "users"> 
+        <tr>
+            <th class="self-center"> Contacts </th>
+        </tr>
+    </table>
     </div>
-
-    <div class = "flex-grow flex flex-col bg-green-300 p-4  space-y-4">
-        <table id = "messages"></table>
-        <div class="flex flex-row space-x-4">
+        <div class = "flex flex-col overflow-auto bg-green-200 rounded-lg p-4 m-3 space-y-4" style="min-width: 90vw; position: relative;">
+        <h5 class="text-lg font-medium" id="name"> </h5>
+        <table class="min-w-full divide-y p-4 divide-gray-700 rounded-lg" id = "messages"> </table>
+        <div class="flex fixed items-center justify-center ml-3 bottom-6 space-x-4" style="position: absolute;">
     <input type = "text" required class = "mt-1 p-2 border rounded-md focus:outline-none focus:border-green-500" id = "msg">
-    <div class="flex flex-row justify-center">
-    <button id = "send"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> <p class="flex items-center"> Send <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-6">
+    <div class="justify-center">
+    <button id = "send"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> <p class="flex items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
     </svg>
 </button>
     </p>
-    </div> <br> 
+    </div>
     <button id="clear" class = "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"> Clear Chat </button>
+ <br> 
+
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
