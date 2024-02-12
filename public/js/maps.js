@@ -314,5 +314,5 @@ async function rev_submit() {
 }
 
 document.getElementById('fin_ride').addEventListener('click', function(){
-  window.postMessage("user_homepage.html", "*");
+  window.parent.postMessage("user_homepage.html", "*");
 })

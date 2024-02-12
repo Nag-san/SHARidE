@@ -110,8 +110,10 @@ document.getElementById("name").innerText = name;
       let text2 = document.createTextNode(inn[i]);
       let msg2 = document.createElement("td");
       msg2.appendChild(text2);
-      if (style == " ") 
-      msg2.classList = "bg-red-400 p-1 text-md rounded";
+      if (style == " ") {
+      msg2.classList = "bg-white p-2 text-md rounded";
+      msg2.style.textAlign = "right";
+      }
       tr.appendChild(msg2);
       document.getElementById("messages").appendChild(tr);
     }
