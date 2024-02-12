@@ -225,7 +225,7 @@ async function setdetails() {
 
 function next() {
   if (document.getElementById("terms").checked == true) {
-    window.location.href = "Pledge.html";
+    window.location.href = "pledge.html";
   } else
     document.getElementById("err").innerText =
       "Please agree to our terms and conditions!";
