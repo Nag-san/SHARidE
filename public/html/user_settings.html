@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
   </head>
-  <body class="min-h-screen flex flex-col justify-between bg-green-400">
+  <body class="min-h-screen flex flex-col justify-between bg-slate-300">
     <div
       class="max-w-sm flex flex-col rounded-lg justify-center m-8 bg-green-300 p-4"
     >
@@ -24,21 +24,24 @@
       <h6 class="text-md mb-6">
         Please complete ride or cancel ride before you update your information!
       </h6>
-      <div class="flex flex-col justify-between space-y-4">
+      <div class="flex flex-col justify-center items-center space-y-4">
         <button
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          style="width:170px"
           id="Personal_update"
         >
           Personal Details
         </button>
         <button
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          style="width:170px"
           id="Choice_update"
         >
           Sharee or Sharer Change?
         </button>
         <button
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          style="width:170px"
           id="Location_update"
         >
           Location Update
@@ -50,10 +53,12 @@
       id="Update"
       class="max-w-sm flex-grow flex flex-col rounded-lg justify-center m-8 bg-green-300 space-y-4 p-4"
     ></div>
-    <h6 id="err" class="ml-3"></h6>
-
+  </div>
+  <h6 id="err" class="ml-3"></h6>
+    
     <button
       id="logout"
+      style="width:170px"
       class="m-8 max-w-sm bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
     >
       Log out?

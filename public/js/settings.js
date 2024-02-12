@@ -117,7 +117,7 @@ document
 
       document.getElementById("err").innerText = "Updated successfully!";
     });
-
+    btn.style.width = "170px";
     btn.classList =
       "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5";
     container.appendChild(btn);
@@ -225,6 +225,7 @@ document
       }
       document.getElementById("err").innerText = "Updated successfully!";
     });
+    btn.style.width = "170px";
     btn.classList =
       "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5";
     container.appendChild(btn);
@@ -374,6 +375,7 @@ document
       }
       document.getElementById("err").innerText = "Updated Successfully!";
     });
+    btn.style.width = "170px";
     btn.classList =
       "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5";
     container.appendChild(btn);
